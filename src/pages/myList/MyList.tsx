@@ -1,15 +1,11 @@
 import React from 'react';
+import Logo from '../../components/logo/Logo.tsx';
+import Footer from '../../components/footer/Footer.tsx';
 
 const MyList: React.FC = () => (
   <div className="user-page">
     <header className="page-header user-page__head">
-      <div className="logo">
-        <a href="main.html" className="logo__link">
-          <span className="logo__letter logo__letter--1">W</span>
-          <span className="logo__letter logo__letter--2">T</span>
-          <span className="logo__letter logo__letter--3">W</span>
-        </a>
-      </div>
+      <Logo />
 
       <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span></h1>
       <ul className="user-block">
@@ -113,19 +109,7 @@ const MyList: React.FC = () => (
       </div>
     </section>
 
-    <footer className="page-footer">
-      <div className="logo">
-        <a href="main.html" className="logo__link logo__link--light">
-          <span className="logo__letter logo__letter--1">W</span>
-          <span className="logo__letter logo__letter--2">T</span>
-          <span className="logo__letter logo__letter--3">W</span>
-        </a>
-      </div>
-
-      <div className="copyright">
-        <p>© 2019 What to watch Ltd.</p>
-      </div>
-    </footer>
+    <Footer/>
   </div>
 );
 

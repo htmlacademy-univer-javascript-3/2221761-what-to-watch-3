@@ -1,6 +1,9 @@
 import React from 'react';
-import Card from '../components/Card';
-import {IMovieDataProps} from '../pages';
+import Card from '../../components/card/Card.tsx';
+import {IMovieDataProps} from '../index';
+import Logo from '../../components/logo/Logo.tsx';
+import Footer from '../../components/footer/Footer.tsx';
+import {Link} from 'react-router-dom';
 
 const Main: React.FC<IMovieDataProps> = ({name, genre, date}) => (
   <>
@@ -12,13 +15,7 @@ const Main: React.FC<IMovieDataProps> = ({name, genre, date}) => (
       <h1 className="visually-hidden">WTW</h1>
 
       <header className="page-header film-card__head">
-        <div className="logo">
-          <a className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
+        <Logo />
 
         <ul className="user-block">
           <li className="user-block__item">
@@ -48,13 +45,13 @@ const Main: React.FC<IMovieDataProps> = ({name, genre, date}) => (
             <div className="film-card__buttons">
               <button className="btn btn--play film-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use></use>
+                  <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
               </button>
               <button className="btn btn--list film-card__button" type="button">
                 <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use></use>
+                  <use xlinkHref="#add"></use>
                 </svg>
                 <span>My list</span>
                 <span className="film-card__count">9</span>
@@ -71,34 +68,34 @@ const Main: React.FC<IMovieDataProps> = ({name, genre, date}) => (
 
         <ul className="catalog__genres-list">
           <li className="catalog__genres-item catalog__genres-item--active">
-            <a href="#" className="catalog__genres-link">All genres</a>
+            <Link to="/" className="catalog__genres-link">All genres</Link>
           </li>
           <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Comedies</a>
+            <Link to="/" className="catalog__genres-link">Comedies</Link>
           </li>
           <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Crime</a>
+            <Link to="/" className="catalog__genres-link">Crime</Link>
           </li>
           <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Documentary</a>
+            <Link to="/" className="catalog__genres-link">Documentary</Link>
           </li>
           <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Dramas</a>
+            <Link to="/" className="catalog__genres-link">Dramas</Link>
           </li>
           <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Horror</a>
+            <Link to="/" className="catalog__genres-link">Horror</Link>
           </li>
           <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Kids & Family</a>
+            <Link to="/" className="catalog__genres-link">Kids & Family</Link>
           </li>
           <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Romance</a>
+            <Link to="/" className="catalog__genres-link">Romance</Link>
           </li>
           <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Sci-Fi</a>
+            <Link to="/" className="catalog__genres-link">Sci-Fi</Link>
           </li>
           <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Thrillers</a>
+            <Link to="/" className="catalog__genres-link">Thrillers</Link>
           </li>
         </ul>
 
@@ -148,19 +145,7 @@ const Main: React.FC<IMovieDataProps> = ({name, genre, date}) => (
         </div>
       </section>
 
-      <footer className="page-footer">
-        <div className="logo">
-          <a className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   </>
 );
