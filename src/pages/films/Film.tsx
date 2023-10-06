@@ -1,9 +1,9 @@
 import React from 'react';
-import Logo from '../../components/logo/Logo.tsx';
-import Footer from '../../components/footer/Footer.tsx';
+import {Logo, Footer, Card} from '../../components';
 import {Link} from 'react-router-dom';
+import {AppRoute} from '../../const.ts';
 
-const Film: React.FC = () => (
+export const Film: React.FC = () => (
   <>
     <section className="film-card film-card--full">
       <div className="film-card__hero">
@@ -23,7 +23,7 @@ const Film: React.FC = () => (
               </div>
             </li>
             <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
+              <Link to={AppRoute.SignIn} className="user-block__link">Sign out</Link>
             </li>
           </ul>
         </header>
@@ -39,18 +39,18 @@ const Film: React.FC = () => (
             <div className="film-card__buttons">
               <button className="btn btn--play film-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use></use>
+                  <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
               </button>
               <button className="btn btn--list film-card__button" type="button">
                 <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use></use>
+                  <use xlinkHref="#add"></use>
                 </svg>
                 <span>My list</span>
                 <span className="film-card__count">9</span>
               </button>
-              <a href="add-review.html" className="btn film-card__button">Add review</a>
+              <Link to={AppRoute.AddReview} className="btn film-card__button">Add review</Link>
             </div>
           </div>
         </div>
@@ -104,41 +104,10 @@ const Film: React.FC = () => (
         <h2 className="catalog__title">More like this</h2>
 
         <div className="catalog__films-list">
-          <article className="small-film-card catalog__films-card">
-            <div className="small-film-card__image">
-              <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-            </div>
-            <h3 className="small-film-card__title">
-              <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-            </h3>
-          </article>
-
-          <article className="small-film-card catalog__films-card">
-            <div className="small-film-card__image">
-              <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
-            </div>
-            <h3 className="small-film-card__title">
-              <a className="small-film-card__link" href="film-page.html">Bohemian Rhapsody</a>
-            </h3>
-          </article>
-
-          <article className="small-film-card catalog__films-card">
-            <div className="small-film-card__image">
-              <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-            </div>
-            <h3 className="small-film-card__title">
-              <a className="small-film-card__link" href="film-page.html">Macbeth</a>
-            </h3>
-          </article>
-
-          <article className="small-film-card catalog__films-card">
-            <div className="small-film-card__image">
-              <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
-            </div>
-            <h3 className="small-film-card__title">
-              <a className="small-film-card__link" href="film-page.html">Aviator</a>
-            </h3>
-          </article>
+          <Card />
+          <Card />
+          <Card />
+          <Card />
         </div>
       </section>
 
@@ -146,5 +115,3 @@ const Film: React.FC = () => (
     </div>
   </>
 );
-
-export default Film;

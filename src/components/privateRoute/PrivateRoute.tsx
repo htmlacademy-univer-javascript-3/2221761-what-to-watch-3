@@ -6,7 +6,7 @@ interface IPrivateRouteProps {
   children: JSX.Element;
 }
 
-function PrivateRoute({authorizationStatus, children}: IPrivateRouteProps) {
+export function PrivateRoute({authorizationStatus, children}: IPrivateRouteProps) {
 
   return (
     authorizationStatus === AuthorizationStatus.Auth
@@ -14,5 +14,3 @@ function PrivateRoute({authorizationStatus, children}: IPrivateRouteProps) {
       : <Navigate to={AppRoute.SignIn}/>
   );
 }
-
-export default PrivateRoute;

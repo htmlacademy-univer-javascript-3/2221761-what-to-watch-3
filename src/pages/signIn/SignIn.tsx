@@ -1,8 +1,7 @@
 import React from 'react';
-import Logo from '../../components/logo/Logo.tsx';
-import Footer from '../../components/footer/Footer.tsx';
+import {Logo, Footer} from '../../components';
 
-const SignIn: React.FC = () => (
+export const SignIn: React.FC = () => (
   <div className="user-page">
     <header className="page-header user-page__head">
       <Logo />
@@ -31,5 +30,3 @@ const SignIn: React.FC = () => (
     <Footer/>
   </div>
 );
-
-export default SignIn;

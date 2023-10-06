@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 45%;
+  height: 45%;
+}
+
+.container__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  padding: 15px;
+}
+
+.link {
+  text-decoration: none;
+  color: #b3ae98;
+  background-color: #382c2a;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+

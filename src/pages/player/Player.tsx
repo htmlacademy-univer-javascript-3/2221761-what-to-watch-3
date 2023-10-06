@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Player: React.FC = () => (
+export const Player: React.FC = () => (
   <div className="player">
     <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
 
@@ -34,5 +34,3 @@ const Player: React.FC = () => (
     </div>
   </div>
 );
-
-export default Player;

@@ -1,9 +1,9 @@
 import React from 'react';
-import Logo from '../../components/logo/Logo.tsx';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const.ts';
+import {Logo} from '../../components';
 
-const AddReview: React.FC = () => (
+export const AddReview: React.FC = () => (
   <section className="film-card film-card--full">
     <div className="film-card__header">
       <div className="film-card__bg">
@@ -18,7 +18,7 @@ const AddReview: React.FC = () => (
         <nav className="breadcrumbs">
           <ul className="breadcrumbs__list">
             <li className="breadcrumbs__item">
-              <Link to="/" className="breadcrumbs__link">The Grand Budapest Hotel</Link>
+              <Link to={AppRoute.Main} className="breadcrumbs__link">The Grand Budapest Hotel</Link>
             </li>
             <li className="breadcrumbs__item">
               <Link to={AppRoute.AddReview} className="breadcrumbs__link">Add review</Link>
@@ -91,4 +91,3 @@ const AddReview: React.FC = () => (
 
   </section>
 );
-export default AddReview;

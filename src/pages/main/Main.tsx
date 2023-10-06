@@ -1,11 +1,9 @@
 import React from 'react';
-import Card from '../../components/card/Card.tsx';
-import {IMovieDataProps} from '../index';
-import Logo from '../../components/logo/Logo.tsx';
-import Footer from '../../components/footer/Footer.tsx';
 import {Link} from 'react-router-dom';
+import {AppRoute, IMovieDataProps} from '../../const.ts';
+import {Card, Footer, Logo} from '../../components';
 
-const Main: React.FC<IMovieDataProps> = ({name, genre, date}) => (
+export const Main: React.FC<IMovieDataProps> = ({name, genre, date}) => (
   <>
     <section className="film-card">
       <div className="film-card__bg">
@@ -24,7 +22,7 @@ const Main: React.FC<IMovieDataProps> = ({name, genre, date}) => (
             </div>
           </li>
           <li className="user-block__item">
-            <a className="user-block__link">Sign out</a>
+            <Link to={AppRoute.SignIn} className="user-block__link">Sign out</Link>
           </li>
         </ul>
       </header>
@@ -149,5 +147,3 @@ const Main: React.FC<IMovieDataProps> = ({name, genre, date}) => (
     </div>
   </>
 );
-
-export default Main;
