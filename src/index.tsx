@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import App from './App.tsx';
+import {BrowserRouter} from 'react-router-dom';
+
 
 const movieData = {
   name: 'The Grand Budapest Hotel',
@@ -13,7 +15,9 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode>
-    <App movieData={movieData}/>
-  </React.StrictMode>
+  <BrowserRouter>
+    <React.StrictMode>
+      <App movieData={movieData}/>
+    </React.StrictMode>
+  </BrowserRouter>
 );

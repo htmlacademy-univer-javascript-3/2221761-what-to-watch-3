@@ -1,6 +1,9 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../const.ts';
+import {Logo} from '../../components';
 
-const AddReview: React.FC = () => (
+export const AddReview: React.FC = () => (
   <section className="film-card film-card--full">
     <div className="film-card__header">
       <div className="film-card__bg">
@@ -10,21 +13,15 @@ const AddReview: React.FC = () => (
       <h1 className="visually-hidden">WTW</h1>
 
       <header className="page-header">
-        <div className="logo">
-          <a href="main.html" className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
+        <Logo />
 
         <nav className="breadcrumbs">
           <ul className="breadcrumbs__list">
             <li className="breadcrumbs__item">
-              <a href="film-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+              <Link to={AppRoute.Main} className="breadcrumbs__link">The Grand Budapest Hotel</Link>
             </li>
             <li className="breadcrumbs__item">
-              <a className="breadcrumbs__link">Add review</a>
+              <Link to={AppRoute.AddReview} className="breadcrumbs__link">Add review</Link>
             </li>
           </ul>
         </nav>
@@ -36,7 +33,7 @@ const AddReview: React.FC = () => (
             </div>
           </li>
           <li className="user-block__item">
-            <a className="user-block__link">Sign out</a>
+            <Link to={AppRoute.SignIn} className="user-block__link">Sign out</Link>
           </li>
         </ul>
       </header>
@@ -94,4 +91,3 @@ const AddReview: React.FC = () => (
 
   </section>
 );
-export default AddReview;
