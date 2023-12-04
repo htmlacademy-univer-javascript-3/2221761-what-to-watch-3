@@ -3,7 +3,6 @@ export enum AppRoute {
   SignIn = '/login',
   MyList = '/mylist',
   Film = '/films',
-  AddReview = '/review',
   Player = '/player',
   NotFound = '*'
 }
@@ -14,8 +13,9 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
-export interface IMovieDataProps {
-  name: string;
-  genre: string;
-  date: string;
+export enum FilmBlockLink {
+  Overview = 'OVERVIEW',
+  Details = 'DETAILS',
+  Reviews = 'REVIEWS'
 }
+
