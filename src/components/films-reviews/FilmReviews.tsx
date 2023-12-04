@@ -1,5 +1,5 @@
-import Review, {ReviewProps} from '../review/Review.tsx';
-
+import {ReviewProps} from '../review/ReviewProps.ts';
+import Review from '../review/Review.tsx';
 
 type FilmReviewsProps = {
   reviews: ReviewProps[];
