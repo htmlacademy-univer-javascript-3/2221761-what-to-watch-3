@@ -1,10 +1,4 @@
-export type ReviewProps = {
-  id: string;
-  date: string;
-  user: string;
-  comment: string;
-  rating: number;
-}
+import {ReviewProps} from './ReviewProps.ts';
 
 export default function Review({date, user, comment, rating}: ReviewProps) {
   return(
