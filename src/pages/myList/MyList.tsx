@@ -1,39 +1,23 @@
-import React from 'react';
-import {Logo, Footer, Card} from '../../components';
-import {Link} from 'react-router-dom';
-import {AppRoute} from '../../const.ts';
+import {FC} from 'react';
+import {Header, Footer, ListOfFilms} from '../../components';
+import {CardProps} from '../../components/card/CardProps.ts';
+import {Helmet} from 'react-helmet-async';
 
-export const MyList: React.FC = () => (
+type MyLIstProps = {
+  cards: CardProps[];
+}
+
+export const MyList: FC<MyLIstProps> = ({cards}) => (
   <div className="user-page">
-    <header className="page-header user-page__head">
-      <Logo />
-
-      <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span></h1>
-      <ul className="user-block">
-        <li className="user-block__item">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>
-        </li>
-        <li className="user-block__item">
-          <Link to={AppRoute.SignIn} className="user-block__link">Sign out</Link>
-        </li>
-      </ul>
-    </header>
-
+    <Helmet>
+      <title>WTW. My list</title>
+    </Helmet>
+    <Header />
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
 
       <div className="catalog__films-list">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <ListOfFilms films={cards}/>
       </div>
     </section>
 

@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
+import App, {AppProps} from './App.tsx';
 import {BrowserRouter} from 'react-router-dom';
 
+import {HelmetProvider} from 'react-helmet-async';
+import {films} from './mocks/films.ts';
+import {reviews} from './mocks/reviews.ts';
+import {CardProps} from './components/card/CardProps.ts';
+import {promoFilm} from './mocks/promoCard.ts';
 
-const movieData = {
-  name: 'The Grand Budapest Hotel',
-  genre: 'Drama',
-  date: '2014'
+const app: AppProps = {
+  promoCard: promoFilm,
+  cards: films.slice(1, films.length) as CardProps[],
+  reviews: reviews,
+  films: films
 };
 
 const root = ReactDOM.createRoot(
@@ -15,9 +21,11 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <BrowserRouter>
-    <React.StrictMode>
-      <App movieData={movieData}/>
-    </React.StrictMode>
-  </BrowserRouter>
+  <HelmetProvider>
+    <BrowserRouter>
+      <React.StrictMode>
+        <App promoCard={app.promoCard} cards={app.cards} reviews={app.reviews} films={app.films}/>
+      </React.StrictMode>
+    </BrowserRouter>
+  </HelmetProvider>
 );
