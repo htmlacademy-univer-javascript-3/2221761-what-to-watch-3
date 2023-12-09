@@ -23,4 +23,4 @@ export const FilmOverview: FC<FilmOverviewProps> = ({film}: FilmOverviewProps) =
       <p className="film-card__starring"><strong>Starring: {film.starring.join(', ')}</strong></p>
     </div>
   </>
-)
+);
