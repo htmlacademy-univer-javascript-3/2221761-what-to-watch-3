@@ -1,4 +1,4 @@
-export type CardProps = {
+export type PreviewTypes = {
   id: string;
   name: string;
   previewImage: string;

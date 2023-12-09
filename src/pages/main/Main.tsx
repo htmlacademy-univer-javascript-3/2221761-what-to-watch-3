@@ -1,35 +1,28 @@
 import {FC} from 'react';
 import {Link} from 'react-router-dom';
-import {Footer, Header, ListOfFilms, PromoCard} from '../../components';
-import {CardProps} from '../../components/card/CardProps.ts';
-import {PromoCardProps} from '../../components/promoCard/PromoCardProps.ts';
+import {Footer, ListOfFilms, PromoCard, PromoCardProps} from '../../components';
+import {Helmet} from 'react-helmet-async';
+import {PreviewTypes} from '../../models/PreviewTypes.ts';
 
-interface MainProps {
+type MainProps = {
   promoCard: PromoCardProps;
-  cards: CardProps[];
+  cards: PreviewTypes[];
 }
 
 export const Main: FC<MainProps> = ({promoCard, cards}) => (
   <>
-    <section className="film-card">
-      <div className="film-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
-      </div>
+    <Helmet>
+      <title>WTW</title>
+    </Helmet>
 
-      <h1 className="visually-hidden">WTW</h1>
-
-      <Header/>
-      <PromoCard
-        id={promoCard.id}
-        name={promoCard.name}
-        genre={promoCard.name}
-        released={promoCard.released}
-        backgroundImage={promoCard.backgroundImage}
-        posterImage={promoCard.posterImage}
-        isFavorite={promoCard.isFavorite}
-        videoLink={promoCard.videoLink}
-      />
-    </section>
+    <PromoCard
+      id={promoCard.id}
+      name={promoCard.name}
+      genre={promoCard.genre}
+      posterImage={promoCard.posterImage}
+      backgroundImage={promoCard.backgroundImage}
+      released={promoCard.released}
+    />
 
     <div className="page-content">
       <section className="catalog">
@@ -67,6 +60,7 @@ export const Main: FC<MainProps> = ({promoCard, cards}) => (
             <Link to="/" className="catalog__genres-link">Thrillers</Link>
           </li>
         </ul>
+
         <ListOfFilms films={cards}/>
 
         <div className="catalog__more">

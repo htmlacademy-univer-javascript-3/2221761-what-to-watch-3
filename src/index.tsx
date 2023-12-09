@@ -6,12 +6,12 @@ import {BrowserRouter} from 'react-router-dom';
 import {HelmetProvider} from 'react-helmet-async';
 import {films} from './mocks/films.ts';
 import {reviews} from './mocks/reviews.ts';
-import {CardProps} from './components/card/CardProps.ts';
 import {promoFilm} from './mocks/promoCard.ts';
+import {PreviewTypes} from './models/PreviewTypes.ts';
 
 const app: AppProps = {
   promoCard: promoFilm,
-  cards: films.slice(1, films.length) as CardProps[],
+  cards: films.slice(1, films.length) as PreviewTypes[],
   reviews: reviews,
   films: films
 };

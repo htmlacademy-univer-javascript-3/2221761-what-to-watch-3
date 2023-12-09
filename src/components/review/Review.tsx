@@ -1,6 +1,7 @@
 import {ReviewProps} from './ReviewProps.ts';
+import {FC} from 'react';
 
-export default function Review({date, user, comment, rating}: ReviewProps) {
+export const Review: FC<ReviewProps> = ({date, user, comment, rating}) => {
   return(
     <div className="review">
       <blockquote className="review__quote">

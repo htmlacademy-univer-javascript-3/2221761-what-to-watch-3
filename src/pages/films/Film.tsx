@@ -1,19 +1,17 @@
 import {FC, useState} from 'react';
-import {Header, Footer, ListOfFilms} from '../../components';
+import {Header, Footer, FilmDetails, FilmOverview, FilmReviews, ListOfFilms} from '../../components';
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import {AppRoute, FilmBlockLink} from '../../const.ts';
 import {FilmsTypes} from '../../models/FimsTypes.ts';
-import {ReviewsTypes} from '../../models/ReviewsTypes.ts';
-import FilmOverview from '../../components/film-overiew/FilmOveriew.tsx';
 import {Helmet} from 'react-helmet-async';
-import FilmDetails from '../../components/film-details/FilmDetails.tsx';
-import FilmReviews from '../../components/films-reviews/FilmReviews.tsx';
-import {CardProps} from '../../components/card/CardProps.ts';
+import {ReviewProps} from '../../components/review/ReviewProps.ts';
+import {PreviewTypes} from '../../models/PreviewTypes.ts';
+import cn from 'classnames';
 
 type FilmProps = {
-  cards: CardProps[];
+  cards: PreviewTypes[];
   films: FilmsTypes[];
-  reviews: ReviewsTypes[];
+  reviews: ReviewProps[];
 }
 
 export const Film: FC<FilmProps> = ({cards, films, reviews}) => {
@@ -92,13 +90,13 @@ export const Film: FC<FilmProps> = ({cards, films, reviews}) => {
             <div className="film-card__desc">
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
-                  <li className={`film-nav__item ${blockLink === FilmBlockLink.Overview ? 'film-nav__item--active' : ''}`}>
+                  <li className={cn('film-nav__item', {'film-nav__item--active': blockLink === FilmBlockLink.Overview})}>
                     <a className="film-nav__link" onClick={handlerOverviewLinkClick}>Overview</a>
                   </li>
-                  <li className={`film-nav__item ${blockLink === FilmBlockLink.Details ? 'film-nav__item--active' : ''}`}>
+                  <li className={cn('film-nav__item', {'film-nav__item--active': blockLink === FilmBlockLink.Details})}>
                     <a className="film-nav__link" onClick={handlerDetailsLinkClick}>Details</a>
                   </li>
-                  <li className={`film-nav__item ${blockLink === FilmBlockLink.Reviews ? 'film-nav__item--active' : ''}`}>
+                  <li className={cn('film-nav__item', {'film-nav__item--active': blockLink === FilmBlockLink.Reviews})}>
                     <a className="film-nav__link" onClick={handlerReviewsLinkClick}>Reviews</a>
                   </li>
                 </ul>
