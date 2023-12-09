@@ -1,10 +1,10 @@
 import {FC} from 'react';
 import {Header, Footer, ListOfFilms} from '../../components';
-import {CardProps} from '../../components/card/CardProps.ts';
 import {Helmet} from 'react-helmet-async';
+import {PreviewTypes} from '../../models/PreviewTypes.ts';
 
 type MyLIstProps = {
-  cards: CardProps[];
+  cards: PreviewTypes[];
 }
 
 export const MyList: FC<MyLIstProps> = ({cards}) => (
