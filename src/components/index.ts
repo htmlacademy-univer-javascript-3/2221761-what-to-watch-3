@@ -1,7 +1,4 @@
 export * from './card/Card.tsx';
-export * from './film-details/FilmDetails.tsx';
-export * from './film-overiew/FilmOveriew.tsx';
-export * from './films-reviews/FilmReviews.tsx';
 export * from './header/Header.tsx';
 export * from './footer/Footer.tsx';
 export * from './privateRoute/PrivateRoute.tsx';
@@ -10,3 +7,7 @@ export * from './listOfFilms/ListOfFilms.tsx';
 export * from './review/Review.tsx';
 export * from './promoCard/PromoCard.tsx';
 export * from './videoPlayer/VideoPlayer.tsx';
+export * from './tabs/Tabs.tsx';
+export * from './tabs/TabDetails.tsx';
+export * from './tabs/TabOverview.tsx';
+export * from './tabs/TabReviews.tsx';

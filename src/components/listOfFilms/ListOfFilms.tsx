@@ -1,18 +1,21 @@
 import {FC, useRef, useState} from 'react';
-import {PreviewTypes} from '../../models/PreviewTypes.ts';
 import {Card} from '../card/Card.tsx';
+import {PreviewTypes} from '../../models';
 
 type ListOfFilmsProps = {
   films: PreviewTypes[];
+  genre: string;
 }
 
-export const ListOfFilms: FC<ListOfFilmsProps> = ({films}: ListOfFilmsProps) => {
+export const ListOfFilms: FC<ListOfFilmsProps> = ({films, genre}: ListOfFilmsProps) => {
   const [activeFilm, setActiveFilm] = useState('');
   const timer = useRef<NodeJS.Timeout>();
 
+  const filmsGenre = films.filter((film) => film.genre === genre).slice(0, 4 + 1) ?? films;
+
   return (
     <div className="catalog__films-list">
-      {films.map((film: PreviewTypes) => (
+      {filmsGenre.map((film) => (
         <Card
           key={film.id}
           id={film.id}

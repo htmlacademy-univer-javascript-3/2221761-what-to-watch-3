@@ -7,7 +7,7 @@ import {HelmetProvider} from 'react-helmet-async';
 import {films} from './mocks/films.ts';
 import {reviews} from './mocks/reviews.ts';
 import {promoFilm} from './mocks/promoCard.ts';
-import {PreviewTypes} from './models/PreviewTypes.ts';
+import {PreviewTypes} from './models/PreviewTypes/PreviewTypes.ts';
 
 const app: AppProps = {
   promoCard: promoFilm,

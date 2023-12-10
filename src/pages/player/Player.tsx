@@ -1,7 +1,7 @@
 import {FC} from 'react';
-import {FilmsTypes} from '../../models/FimsTypes.ts';
 import {useNavigate, useParams} from 'react-router-dom';
 import {AppRoute} from '../../const.ts';
+import {FilmsTypes} from '../../models';
 
 type PlayerProps = {
   films: FilmsTypes[];
@@ -47,4 +47,3 @@ export const Player: FC<PlayerProps> = ({films}) => {
     </div>
   );
 };
-

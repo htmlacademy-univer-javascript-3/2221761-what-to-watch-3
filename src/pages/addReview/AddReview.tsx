@@ -1,9 +1,9 @@
 import {FC} from 'react';
 import {Link, useParams} from 'react-router-dom';
-import {FilmsTypes} from '../../models/FimsTypes.ts';
 import {Helmet} from 'react-helmet-async';
 import {AppRoute} from '../../const.ts';
 import {FormReview} from '../../components';
+import {FilmsTypes} from '../../models';
 
 interface AddReviewProps {
   films: FilmsTypes[];

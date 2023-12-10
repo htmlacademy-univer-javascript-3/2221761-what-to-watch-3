@@ -2,7 +2,7 @@ import {FC} from 'react';
 import {Link} from 'react-router-dom';
 import {Footer, ListOfFilms, PromoCard, PromoCardProps} from '../../components';
 import {Helmet} from 'react-helmet-async';
-import {PreviewTypes} from '../../models/PreviewTypes.ts';
+import {PreviewTypes} from '../../models';
 
 type MainProps = {
   promoCard: PromoCardProps;
@@ -61,7 +61,7 @@ export const Main: FC<MainProps> = ({promoCard, cards}) => (
           </li>
         </ul>
 
-        <ListOfFilms films={cards}/>
+        <ListOfFilms films={cards} genre=''/>
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
