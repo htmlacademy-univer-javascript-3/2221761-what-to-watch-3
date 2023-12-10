@@ -1,36 +1,38 @@
-import {FilmsTypes} from '../../models/FimsTypes.ts';
-import {getRunTime} from '../../utils/getRunTime.ts';
 import {FC} from 'react';
 
-type FilmDetailsProps = {
-  film: FilmsTypes;
+export type TabDetails = {
+  director: string;
+  starring: string[];
+  runTime: number;
+  genre: string;
+  released: number;
 }
 
-export const FilmDetails: FC<FilmDetailsProps> = ({film}: FilmDetailsProps) => (
+export const TabDetails: FC<TabDetails> = ({director, starring, runTime, genre, released}) => (
   <div className="film-card__text film-card__row">
     <div className="film-card__text-col">
       <p className="film-card__details-item">
         <strong className="film-card__details-name">Director</strong>
-        <span className="film-card__details-value">{film.director}</span>
+        <span className="film-card__details-value">{director}</span>
       </p>
       <p className="film-card__details-item">
         <strong className="film-card__details-name">Starring</strong>
-        <span className="film-card__details-value">{film.starring.join(',\n')}</span>
+        <span className="film-card__details-value">{starring.join(',\n')}</span>
       </p>
     </div>
 
     <div className="film-card__text-col">
       <p className="film-card__details-item">
         <strong className="film-card__details-name">Run Time</strong>
-        <span className="film-card__details-value">{getRunTime(film.runTime)}</span>
+        <span className="film-card__details-value">{runTime}</span>
       </p>
       <p className="film-card__details-item">
         <strong className="film-card__details-name">Genre</strong>
-        <span className="film-card__details-value">{film.genre}</span>
+        <span className="film-card__details-value">{genre}</span>
       </p>
       <p className="film-card__details-item">
         <strong className="film-card__details-name">Released</strong>
-        <span className="film-card__details-value">{film.released}</span>
+        <span className="film-card__details-value">{released}</span>
       </p>
     </div>
   </div>

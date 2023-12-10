@@ -1,5 +1,11 @@
-import {ReviewProps} from './ReviewProps.ts';
 import {FC} from 'react';
+
+export type ReviewProps = {
+  date: string;
+  user: string;
+  comment: string;
+  rating: number;
+}
 
 export const Review: FC<ReviewProps> = ({date, user, comment, rating}) => (
   <div className="review">

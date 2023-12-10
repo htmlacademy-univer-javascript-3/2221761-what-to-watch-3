@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import {Header, Footer, ListOfFilms} from '../../components';
 import {Helmet} from 'react-helmet-async';
-import {PreviewTypes} from '../../models/PreviewTypes.ts';
+import {PreviewTypes} from '../../models';
 
 type MyLIstProps = {
   cards: PreviewTypes[];
@@ -17,7 +17,7 @@ export const MyList: FC<MyLIstProps> = ({cards}) => (
       <h2 className="catalog__title visually-hidden">Catalog</h2>
 
       <div className="catalog__films-list">
-        <ListOfFilms films={cards}/>
+        <ListOfFilms films={cards} genre=''/>
       </div>
     </section>
 

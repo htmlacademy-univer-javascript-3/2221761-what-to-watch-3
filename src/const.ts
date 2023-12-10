@@ -13,9 +13,14 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
-export enum FilmBlockLink {
-  Overview = 'OVERVIEW',
-  Details = 'DETAILS',
-  Reviews = 'REVIEWS'
-}
+export const FilmTab = {
+  Overview:'OVERVIEW',
+  Details:'DETAILS',
+  Reviews:'REVIEWS'
+};
 
+export const FilmTabName = {
+  [FilmTab.Overview]: 'Overview',
+  [FilmTab.Details]: 'Details',
+  [FilmTab.Reviews]: 'Reviews',
+};

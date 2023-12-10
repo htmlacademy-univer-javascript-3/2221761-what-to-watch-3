@@ -2,15 +2,13 @@ import {FC} from 'react';
 import {Route, Routes} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from './const.ts';
 import {AddReview, Main, MyList, NotFound, Player, SignIn, Film} from './pages';
-import {FilmsTypes} from './models/FimsTypes.ts';
 import {PrivateRoute, PromoCardProps} from './components';
-import {ReviewProps} from './components/review/ReviewProps.ts';
-import {PreviewTypes} from './models/PreviewTypes.ts';
+import {FilmsTypes, PreviewTypes, ReviewsTypes} from './models';
 
 export interface AppProps {
   promoCard: PromoCardProps;
   cards: PreviewTypes[];
-  reviews: ReviewProps[];
+  reviews: ReviewsTypes[];
   films: FilmsTypes[];
 }
 
