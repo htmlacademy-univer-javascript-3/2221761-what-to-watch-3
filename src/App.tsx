@@ -16,7 +16,7 @@ const App: FC<AppProps> = ({promoCard,cards, reviews, films}) => (
   <Routes>
     <Route
       path={AppRoute.Main}
-      element={<Main promoCard={promoCard} cards={cards} />}
+      element={<Main promoCard={promoCard} />}
     />
     <Route
       path={AppRoute.SignIn}

@@ -17,7 +17,7 @@ export const MyList: FC<MyLIstProps> = ({cards}) => (
       <h2 className="catalog__title visually-hidden">Catalog</h2>
 
       <div className="catalog__films-list">
-        <ListOfFilms films={cards} genre=''/>
+        <ListOfFilms films={cards}/>
       </div>
     </section>
 

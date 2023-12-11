@@ -4,6 +4,7 @@ import {Link, useNavigate, useParams} from 'react-router-dom';
 import {AppRoute} from '../../const.ts';
 import {Helmet} from 'react-helmet-async';
 import {FilmsTypes, PreviewTypes, ReviewsTypes} from '../../models';
+import {getFilmsGenre} from '../../utils/getFilmsGenre.ts';
 
 type FilmProps = {
   cards: PreviewTypes[];
@@ -72,7 +73,7 @@ export const Film: FC<FilmProps> = ({cards, films, reviews}) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <ListOfFilms films={cards} genre={film.genre}/>
+          <ListOfFilms films={getFilmsGenre(cards, film.genre)} filmCount={4}/>
         </section>
 
         <Footer />
