@@ -1,11 +1,14 @@
-export enum AppRoute {
-  Main = '/',
-  SignIn = '/login',
-  MyList = '/mylist',
-  Film = '/films',
-  Player = '/player',
-  NotFound = '*'
-}
+export const AppRoute = {
+  Main: '/',
+  SignIn: '/login',
+  MyList: '/mylist',
+  Film: '/films',
+  Player: '/player',
+  NotFound: '*'
+};
+
+export const SHOWN_FILM_COUNT = 8;
+export const DEFAULT_GENRES = 'All genres';
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',

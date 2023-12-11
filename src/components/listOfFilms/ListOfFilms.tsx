@@ -4,24 +4,24 @@ import {PreviewTypes} from '../../models';
 
 type ListOfFilmsProps = {
   films: PreviewTypes[];
-  genre: string;
+  filmCount?: number;
 }
 
-export const ListOfFilms: FC<ListOfFilmsProps> = ({films, genre}: ListOfFilmsProps) => {
+export const ListOfFilms: FC<ListOfFilmsProps> = ({films, filmCount}) => {
   const [activeFilm, setActiveFilm] = useState('');
   const timer = useRef<NodeJS.Timeout>();
 
-  const filmsGenre = films.filter((film) => film.genre === genre).slice(0, 4 + 1) ?? films;
+  const sliceFilms = filmCount ? films.slice(0, filmCount) : films;
 
   return (
     <div className="catalog__films-list">
-      {filmsGenre.map((film) => (
+      {sliceFilms.map((film) => (
         <Card
           key={film.id}
           id={film.id}
-          previewImage={film.previewImage}
+          previewImage={film.previewImage || ''}
           name={film.name}
-          previewVideoLink={film.previewVideoLink}
+          previewVideoLink={film.previewVideoLink || ''}
           isPlayingPreviewVideo={film.id === activeFilm}
           onSmallFilmCardMouseOver={() => {
             timer.current = setTimeout(() => {

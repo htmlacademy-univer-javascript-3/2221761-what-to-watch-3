@@ -11,3 +11,4 @@ export * from './tabs/Tabs.tsx';
 export * from './tabs/TabDetails.tsx';
 export * from './tabs/TabOverview.tsx';
 export * from './tabs/TabReviews.tsx';
+export * from './allGenres/AllGenres.tsx';
