@@ -3,19 +3,21 @@ import {Header, Footer, ListOfFilms, Tabs} from '../../components';
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import {AppRoute} from '../../const.ts';
 import {Helmet} from 'react-helmet-async';
-import {FilmsTypes, PreviewTypes, ReviewsTypes} from '../../models';
-import {getFilmsGenre} from '../../utils/getFilmsGenre.ts';
+import {FilmsTypes, ReviewsTypes} from '../../models';
+import {useTypedSelector} from '../../hooks/redux.ts';
+import {useFilmsByGenre} from '../../hooks/filmByGenre.ts';
 
 type FilmProps = {
-  cards: PreviewTypes[];
   films: FilmsTypes[];
   reviews: ReviewsTypes[];
 }
 
-export const Film: FC<FilmProps> = ({cards, films, reviews}) => {
+export const Film: FC<FilmProps> = ({films, reviews}) => {
   const navigate = useNavigate();
   const {id} = useParams();
   const film = films.find((item) => item.id === id) as FilmsTypes;
+  const genre = useTypedSelector((state) => state.genreReducer.genre);
+  const filmsByGenre = useFilmsByGenre(genre);
 
   return (
     <>
@@ -73,7 +75,7 @@ export const Film: FC<FilmProps> = ({cards, films, reviews}) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <ListOfFilms films={getFilmsGenre(cards, film.genre)} filmCount={4}/>
+          <ListOfFilms films={filmsByGenre} filmCount={4}/>
         </section>
 
         <Footer />

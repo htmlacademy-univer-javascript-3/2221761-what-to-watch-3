@@ -35,7 +35,7 @@ const App: FC<AppProps> = ({promoCard,cards, reviews, films}) => (
     <Route path={AppRoute.Film}>
       <Route index element={<NotFound />} />
       <Route path=':id'>
-        <Route index element={<Film cards={cards} films={films} reviews={reviews} />} />
+        <Route index element={<Film films={films} reviews={reviews} />} />
         <Route path='review' element={<AddReview films={films}/>} />
       </Route>
     </Route>

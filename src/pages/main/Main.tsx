@@ -1,21 +1,19 @@
-import {FC, useEffect} from 'react';
-import {AllGenres, Footer, ListOfFilms, PromoCard, PromoCardProps} from '../../components';
+import {FC, useState} from 'react';
+import {AllGenres, Footer, ListOfFilms, PromoCard, PromoCardProps, ShowMore} from '../../components';
 import {Helmet} from 'react-helmet-async';
-import {useTypedDispatch, useTypedSelector} from '../../hooks/redux.ts';
+import { useTypedSelector} from '../../hooks/redux.ts';
 import {getGenreList} from '../../utils/getGenreList.ts';
-import {changeCount, resetCount} from '../../store/reducers/GenreReducer.ts';
+import {SHOWN_FILM_COUNT} from '../../const.ts';
+import {useFilmsByGenre} from '../../hooks/filmByGenre.ts';
 
 type MainProps = {
   promoCard: PromoCardProps;
 }
 
 export const Main: FC<MainProps> = ({promoCard}) => {
-  const {films, filmsByGenre, shownFilmCount} = useTypedSelector((state) => state.genreReducer);
-  const dispatch = useTypedDispatch();
-
-  useEffect(() => {
-    dispatch(resetCount);
-  }, [dispatch]);
+  const {films, genre} = useTypedSelector((state) => state.genreReducer);
+  const [showFilm, setShowFilm] = useState<number>(SHOWN_FILM_COUNT);
+  const filmsByGenre = useFilmsByGenre(genre);
 
   return (
     <>
@@ -35,13 +33,11 @@ export const Main: FC<MainProps> = ({promoCard}) => {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <AllGenres genres={getGenreList(films)}/>
-          <ListOfFilms films={filmsByGenre} filmCount={shownFilmCount}/>
-          {shownFilmCount < filmsByGenre.length &&
-            <div className="catalog__more">
-              <button onClick={() => dispatch(changeCount())} className="catalog__button" type="button">Show more
-              </button>
-            </div>}
+          <AllGenres genres={getGenreList(films)} onGenreClick={() => setShowFilm(SHOWN_FILM_COUNT)}/>
+          <ListOfFilms films={filmsByGenre} filmCount={showFilm}/>
+          {showFilm
+            < filmsByGenre.length
+            && <ShowMore onShowMoreFilmButtonClick={() => setShowFilm(showFilm + SHOWN_FILM_COUNT)}/>}
         </section>
 
         <Footer/>
