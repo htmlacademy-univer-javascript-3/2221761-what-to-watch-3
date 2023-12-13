@@ -10,6 +10,7 @@ import {promoFilm} from './mocks/promoCard.ts';
 import {Provider} from 'react-redux';
 import {setupStore} from './store/store.ts';
 import {PreviewTypes} from './models';
+import {filmsAction} from './store/filmsAction.ts';
 
 const app: AppProps = {
   promoCard: promoFilm,
@@ -23,6 +24,8 @@ const root = ReactDOM.createRoot(
 );
 
 const store = setupStore();
+
+store.dispatch(filmsAction());
 
 root.render(
   <HelmetProvider>

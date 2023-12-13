@@ -13,3 +13,4 @@ export * from './tabs/TabOverview.tsx';
 export * from './tabs/TabReviews.tsx';
 export * from './allGenres/AllGenres.tsx';
 export * from './showMore/ShowMore.tsx';
+export * from './spinner/Spinner.tsx';

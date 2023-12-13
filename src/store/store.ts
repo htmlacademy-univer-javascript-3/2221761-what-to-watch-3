@@ -1,5 +1,8 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import genreReducer from './reducers/GenreReducer.ts';
+import genreReducer from './reducer.ts';
+import {createApi} from '../services/api.ts';
+
+const api = createApi();
 
 const rootReducer = combineReducers({
   genreReducer
@@ -7,6 +10,12 @@ const rootReducer = combineReducers({
 
 export const setupStore = () => configureStore({
   reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      thunk: {
+        extraArgument: api,
+      },
+    }),
 });
 
 export type RootState = ReturnType<typeof rootReducer>
