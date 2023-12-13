@@ -1,13 +1,10 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AxiosInstance} from 'axios';
 import {FilmsTypes} from '../models';
-import { loadFilms, loadingStatus} from './reducer.ts';
+import {loadFilms, loadingStatus} from './reducer.ts';
 import {APIRoute} from '../const.ts';
-import {AppDispatch, AppStore} from './store.ts';
 
 export const filmsAction = createAsyncThunk<void, undefined, {
-  dispatch: AppDispatch;
-  state: AppStore;
   extra: AxiosInstance;
 }>(
   'data/films',

@@ -2,13 +2,13 @@ import {DEFAULT_GENRES} from '../const.ts';
 import {PreviewTypes} from '../models';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-export type genreState = {
+export type GenreState = {
   genre: string;
   films: PreviewTypes[];
   filmLoading: boolean;
 }
 
-const initialState: genreState = {
+const initialState: GenreState = {
   genre: DEFAULT_GENRES,
   films: [],
   filmLoading: false,
