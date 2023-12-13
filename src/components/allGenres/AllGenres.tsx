@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import {useTypedDispatch, useTypedSelector} from '../../hooks/redux.ts';
 import {FC} from 'react';
-import {changeGenre} from '../../store/reducers/GenreReducer.ts';
+import {changeGenre} from '../../store/reducer.ts';
 
 type AllGenresProps = {
   genres: string[];

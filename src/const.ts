@@ -7,6 +7,10 @@ export const AppRoute = {
   NotFound: '*'
 };
 
+export const APIRoute = {
+  Films: '/films',
+};
+
 export const SHOWN_FILM_COUNT = 8;
 export const DEFAULT_GENRES = 'All genres';
 
