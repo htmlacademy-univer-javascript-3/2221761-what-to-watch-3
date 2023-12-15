@@ -1,35 +1,34 @@
-import {DEFAULT_GENRES} from '../const.ts';
+import {AuthorizationStatus, DEFAULT_GENRES} from '../const.ts';
 import {PreviewTypes} from '../models';
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createReducer} from '@reduxjs/toolkit';
+import {changeGenre, loadFilms, loadingStatus, requireAuthorization} from './actions.ts';
 
-export type GenreState = {
+type InitialState = {
   genre: string;
   films: PreviewTypes[];
   filmLoading: boolean;
+  authStatus: string;
 }
 
-const initialState: GenreState = {
+const initialState: InitialState = {
   genre: DEFAULT_GENRES,
   films: [],
   filmLoading: false,
+  authStatus: AuthorizationStatus.Unknown,
 };
 
-const reducer = createSlice({
-  name: 'genre',
-  initialState,
-  reducers: {
-    changeGenre: (state, action: PayloadAction<{ genre: string }>) => {
+export const reducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(changeGenre, (state, action) => {
       state.genre = action.payload.genre;
-    },
-    loadFilms: (state, action: PayloadAction<PreviewTypes[]>) => {
+    })
+    .addCase(loadFilms, (state, action) => {
       state.films = action.payload;
-    },
-    loadingStatus: (state, action: PayloadAction<boolean>) => {
+    })
+    .addCase(loadingStatus, (state, action) => {
       state.filmLoading = action.payload;
-    }
-  },
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authStatus = action.payload;
+    });
 });
-
-export const {changeGenre, loadFilms, loadingStatus} = reducer.actions;
-
-export default reducer.reducer;
