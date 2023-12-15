@@ -1,23 +1,20 @@
-import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import genreReducer from './reducer.ts';
-import {createApi} from '../services/api.ts';
+import {createAPI} from '../services/api.ts';
+import {configureStore} from '@reduxjs/toolkit';
+import {reducer} from './reducer.ts';
+import {redirect} from './middleware/redirect.ts';
 
-const api = createApi();
+export const api = createAPI();
 
-const rootReducer = combineReducers({
-  genreReducer
-});
-
-export const setupStore = () => configureStore({
-  reducer: rootReducer,
+export const store = configureStore({
+  reducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       thunk: {
         extraArgument: api,
       },
-    }),
+    }).concat(redirect),
 });
 
-export type RootState = ReturnType<typeof rootReducer>
-export type AppStore = ReturnType<typeof setupStore>
-export type AppDispatch = AppStore['dispatch']
+export type State = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;

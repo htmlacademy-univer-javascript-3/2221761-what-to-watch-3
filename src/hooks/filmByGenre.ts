@@ -1,5 +1,4 @@
 import {useTypedSelector} from './redux.ts';
-import {getFilmsByGenre} from '../utils/getFilmsGenre.ts';
+import {getFilmsByGenre} from '../utils/get-films-genre.ts';
 
-export const useFilmsByGenre = (genre: string) => useTypedSelector((state) => getFilmsByGenre(state.genreReducer.films , genre));
-
+export const useFilmsByGenre = (genre: string) => useTypedSelector((state) => getFilmsByGenre(state.films , genre));
