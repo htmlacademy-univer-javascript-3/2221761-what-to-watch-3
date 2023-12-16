@@ -1,23 +1,25 @@
 import {FC} from 'react';
-import {Link, useParams} from 'react-router-dom';
-import {Helmet} from 'react-helmet-async';
-import {AppRoute} from '../../const.ts';
-import {FormReview} from '../../components';
-import {FilmsTypes} from '../../models';
+import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
+import useFilmById from '../../hooks/useFilmById.ts';
+import {useTypedSelector} from '../../hooks/redux.ts';
+import {FormReview, Spinner} from '../../components';
 
-type AddReviewProps = {
-  films: FilmsTypes[];
-}
+export const AddReview: FC = () => {
+  const film = useFilmById();
+  const isFilmDataLoading = useTypedSelector((state) => state.isFilmDataLoading);
 
-export const AddReview: FC<AddReviewProps> = ({films}) => {
-  const {id} = useParams();
-  const film = films.find((item) => item.id === id) as FilmsTypes;
+  if (isFilmDataLoading || !film) {
+    return <Spinner/>;
+  }
 
   return (
     <section className="film-card film-card--full">
       <Helmet>
-        WTW. Add review {film.name}
+        <title>WTW. Add review {film.name}</title>
       </Helmet>
+
       <div className="film-card__header">
         <div className="film-card__bg">
           <img src={film.backgroundImage} alt={film.name} />
@@ -37,10 +39,14 @@ export const AddReview: FC<AddReviewProps> = ({films}) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`${AppRoute.Film}/${film.id}`} className="breadcrumbs__link">{film.name}</Link>
+                <Link to={`${AppRoute.Film}/${film.id}`} className="breadcrumbs__link">
+                  {film.name}
+                </Link>
               </li>
               <li className="breadcrumbs__item">
-                <Link to={`${AppRoute.Film}/${film.id}/review`} className="breadcrumbs__link">Add review</Link>
+                <Link to={`${AppRoute.Film}/${film.id}/review`} className="breadcrumbs__link">
+                  Add review
+                </Link>
               </li>
             </ul>
           </nav>
@@ -48,11 +54,13 @@ export const AddReview: FC<AddReviewProps> = ({films}) => {
           <ul className="user-block">
             <li className="user-block__item">
               <div className="user-block__avatar">
-                <img src={film.posterImage} alt={film.name} width="63" height="63" />
+                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
               </div>
             </li>
             <li className="user-block__item">
-              <Link className="user-block__link" to={AppRoute.SignIn}>Sign out</Link>
+              <Link className="user-block__link" to={AppRoute.SignIn}>
+                Sign out
+              </Link>
             </li>
           </ul>
         </header>
@@ -61,8 +69,8 @@ export const AddReview: FC<AddReviewProps> = ({films}) => {
           <img src={film.posterImage} alt={film.name} width="218" height="327" />
         </div>
       </div>
-      <FormReview/>
 
+      <FormReview filmId={film.id} />
     </section>
   );
 };

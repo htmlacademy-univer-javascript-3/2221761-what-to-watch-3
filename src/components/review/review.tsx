@@ -1,4 +1,5 @@
 import {FC} from 'react';
+import {formatAltDate, formatHumanizedDate} from '../../utils/change-date-format.ts';
 
 export type ReviewProps = {
   date: string;
@@ -14,7 +15,7 @@ export const Review: FC<ReviewProps> = ({date, user, comment, rating}) => (
 
       <footer className="review__details">
         <cite className="review__author">{user}</cite>
-        <time className="review__date" dateTime="2016-12-24">{date}</time>
+        <time className="review__date" dateTime={formatAltDate(date)}>{formatHumanizedDate(date)}</time>
       </footer>
     </blockquote>
 

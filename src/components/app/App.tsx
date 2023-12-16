@@ -3,18 +3,17 @@ import {Route, Routes} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const.ts';
 import {AddReview, Main, MyList, NotFound, Player, SignIn, Film} from '../../pages';
 import {PrivateRoute, PromoCardProps, Spinner} from '../index.ts';
-import {FilmsTypes, PreviewTypes, ReviewsTypes} from '../../models';
+import {FilmsTypes, PreviewTypes} from '../../models';
 import {useTypedSelector} from '../../hooks/redux.ts';
 
 
 export type AppProps = {
   promoCard: PromoCardProps;
   cards: PreviewTypes[];
-  reviews: ReviewsTypes[];
   films: FilmsTypes[];
 }
 
-const App: FC<AppProps> = ({promoCard,cards, reviews, films}) => {
+const App: FC<AppProps> = ({promoCard,cards, films}) => {
   const filmLoading = useTypedSelector((state) => state.filmLoading);
 
   if (filmLoading) {
@@ -44,8 +43,8 @@ const App: FC<AppProps> = ({promoCard,cards, reviews, films}) => {
       <Route path={AppRoute.Film}>
         <Route index element={<NotFound />} />
         <Route path=':id'>
-          <Route index element={<Film films={films} reviews={reviews} />} />
-          <Route path='review' element={<AddReview films={films}/>} />
+          <Route index element={<Film/>} />
+          <Route path='review' element={<AddReview/>} />
         </Route>
       </Route>
       <Route path={AppRoute.Player}>
