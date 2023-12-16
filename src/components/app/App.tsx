@@ -14,7 +14,7 @@ export type AppProps = {
 }
 
 const App: FC<AppProps> = ({promoCard,cards, films}) => {
-  const filmLoading = useTypedSelector((state) => state.filmLoading);
+  const filmLoading = useTypedSelector((state) => state.isFilmDataLoading);
 
   if (filmLoading) {
     return <Spinner/>;
