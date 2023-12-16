@@ -46,7 +46,7 @@ export const UserBlocking: FC<AuthorizationStatus> = (authorizationStatus) => {
 };
 
 export const Header: FC = () => {
-  const authorizationStatus = useTypedSelector((state) => state.authStatus) as AuthorizationStatus;
+  const authorizationStatus = useTypedSelector((state) => state.authorizationStatus);
 
   return (
     <header className="page-header film-card__head">

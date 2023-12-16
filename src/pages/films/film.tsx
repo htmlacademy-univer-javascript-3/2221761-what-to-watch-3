@@ -1,23 +1,38 @@
-import {FC} from 'react';
-import {Header, Footer, ListOfFilms, Tabs} from '../../components';
-import {Link, useNavigate, useParams} from 'react-router-dom';
-import {AppRoute} from '../../const.ts';
+import {FC, useEffect} from 'react';
+import {Header, Footer, ListOfFilms, Tabs, Spinner} from '../../components';
+import {Link, useNavigate} from 'react-router-dom';
+import {AppRoute, AuthorizationStatus, FILM_SAME_GENRE_COUNT} from '../../const.ts';
 import {Helmet} from 'react-helmet-async';
-import {FilmsTypes, ReviewsTypes} from '../../models';
-import {useTypedSelector} from '../../hooks/redux.ts';
-import {useFilmsByGenre} from '../../hooks/filmByGenre.ts';
+import {useTypedDispatch, useTypedSelector} from '../../hooks/redux.ts';
+import useFilmById from '../../hooks/useFilmById.ts';
+import {fetchFilmReviewsAction, fetchSimilarFilmsAction} from '../../store/api-actions.ts';
+import {store} from '../../store/store.ts';
+import {PreviewTypes, ReviewsTypes} from '../../models';
 
-type FilmProps = {
-  films: FilmsTypes[];
-  reviews: ReviewsTypes[];
-}
-
-export const Film: FC<FilmProps> = ({films, reviews}) => {
+export const Film: FC = () => {
   const navigate = useNavigate();
-  const {id} = useParams();
-  const film = films.find((item) => item.id === id) as FilmsTypes;
-  const genre = useTypedSelector((state) => state.genre);
-  const filmsByGenre = useFilmsByGenre(genre);
+  const dispatch = useTypedDispatch();
+  const film = useFilmById();
+
+  const isFilmDataLoading = useTypedSelector((state) => state.isFilmDataLoading);
+
+  const similarFilms = useTypedSelector((state) => state.currentSimilarFilms);
+  const isSimilarFilmsDataLoading = useTypedSelector((state) => state.isSimilarFilmsLoading);
+
+  const filmReviews = useTypedSelector((state) => state.currentFilmReviews) as ReviewsTypes[];
+
+  const authorizationStatus = useTypedSelector((state) => state.authorizationStatus);
+
+  useEffect(() => {
+    if (film) {
+      store.dispatch(fetchSimilarFilmsAction({filmId: film.id}));
+      store.dispatch(fetchFilmReviewsAction({filmId: film.id}));
+    }
+  }, [dispatch, film]);
+
+  if (isFilmDataLoading || !film) {
+    return <Spinner/>;
+  }
 
   return (
     <>
@@ -27,12 +42,12 @@ export const Film: FC<FilmProps> = ({films, reviews}) => {
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={film.backgroundImage} alt={film.name} />
+            <img src={film.backgroundImage} alt={film.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <Header />
+          <Header/>
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
@@ -56,7 +71,8 @@ export const Film: FC<FilmProps> = ({films, reviews}) => {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link to={`${AppRoute.Film}/${film.id}/review`} className="btn film-card__button">Add review</Link>
+                {authorizationStatus === AuthorizationStatus.Auth &&
+                  <Link to={`${AppRoute.Film}/${film.id}/review`} className="btn film-card__button">Add review</Link>}
               </div>
             </div>
           </div>
@@ -65,20 +81,20 @@ export const Film: FC<FilmProps> = ({films, reviews}) => {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={film.posterImage} alt={film.name} width="218" height="327" />
+              <img src={film.posterImage} alt={film.name} width="218" height="327"/>
             </div>
-            <Tabs film={film} reviews={reviews}/>
+            <Tabs film={film} reviews={filmReviews}/>
           </div>
         </div>
       </section>
 
       <div className="page-content">
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
-          <ListOfFilms films={filmsByGenre} filmCount={4}/>
-        </section>
-
-        <Footer />
+        {similarFilms?.length !== 0 && !isSimilarFilmsDataLoading &&
+          <section className="catalog catalog--like-this">
+            <h2 className="catalog__title">More like this</h2>
+            <ListOfFilms films={similarFilms as PreviewTypes[]} filmCount={FILM_SAME_GENRE_COUNT}/>
+          </section>}
+        <Footer/>
       </div>
     </>
   );

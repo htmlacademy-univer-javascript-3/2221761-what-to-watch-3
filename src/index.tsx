@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {HelmetProvider} from 'react-helmet-async';
 import {films} from './mocks/films.ts';
-import {reviews} from './mocks/reviews.ts';
 import {promoFilm} from './mocks/promoCard.ts';
 import {Provider} from 'react-redux';
 import {store} from './store/store.ts';
@@ -19,7 +18,6 @@ store.dispatch(checkAuthAction());
 const app: AppProps = {
   promoCard: promoFilm,
   cards: films.slice(1, films.length) as PreviewTypes[],
-  reviews: reviews,
   films: films
 };
 
@@ -36,7 +34,6 @@ root.render(
           <App
             promoCard={app.promoCard}
             cards={app.cards}
-            reviews={app.reviews}
             films={app.films}
           />
         </React.StrictMode>

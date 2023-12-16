@@ -41,10 +41,7 @@ const getFilmActiveTabInfo: FC<GetFilmActiveTabInfoProps> = ({activeTab, film, r
       );
     case FilmTab.Reviews:
       return (
-        <TabReviews
-          filmId={film.id}
-          reviews={reviews}
-        />
+        <TabReviews reviews={reviews}/>
       );
     default:
       return null;

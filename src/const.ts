@@ -15,7 +15,11 @@ export const APIRoute = {
 };
 
 export const SHOWN_FILM_COUNT = 8;
-export const DEFAULT_GENRES = 'All genres';
+export const DEFAULT_GENRE = 'All genres';
+
+export const RATING_STAR = 10;
+
+export const FILM_SAME_GENRE_COUNT = 4;
 
 export const TIMEOUT_SHOW_ERROR = 2000;
 
