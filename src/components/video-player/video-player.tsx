@@ -6,7 +6,7 @@ type VideoPlayerProps = {
   poster: string;
 }
 
-export const VideoPlayer: FC<VideoPlayerProps> = ({isPlaying, src, poster}: VideoPlayerProps) => {
+export const VideoPlayer: FC<VideoPlayerProps> = ({isPlaying, src, poster}) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);

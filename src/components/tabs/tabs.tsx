@@ -1,76 +1,75 @@
-import {FC, useState} from 'react';
-import {FilmTab, FilmTabName} from '../../const.ts';
 import cn from 'classnames';
-import {FilmsTypes, ReviewsTypes} from '../../models';
-import {TabOverview} from './tab-overview.tsx';
-import {TabDetails} from './tab-details.tsx';
-import {TabReviews} from './tab-reviews.tsx';
+import {FC, useState} from 'react';
+import { FilmTab, FilmTabNameInterface } from '../../const';
+import { Film } from '../../types/film';
+import { Review } from '../../types/review';
+import {FilmOverview, FilmDetails, FilmReviews} from '../index.ts';
 
-export type TabsProps = {
-  film: FilmsTypes;
-  reviews: ReviewsTypes[];
+type TabsProps = {
+  film: Film;
+  reviews: Review[];
 }
 
-type GetFilmActiveTabInfoProps = {
-  activeTab: string;
-  film: FilmsTypes;
-  reviews: ReviewsTypes[];
-}
-
-const getFilmActiveTabInfo: FC<GetFilmActiveTabInfoProps> = ({activeTab, film, reviews}) => {
-  switch (activeTab) {
+const getFilmActiveTabInfo = (activeTab: string, film: Film, reviews: Review[]) => {
+  switch(activeTab) {
     case FilmTab.Overview:
       return (
-        <TabOverview
+        <FilmOverview
           description={film.description}
           rating={film.rating}
           scoresCount={film.scoresCount}
           director={film.director}
           starring={film.starring}
-        />
-      );
+        />);
     case FilmTab.Details:
       return (
-        <TabDetails
+        <FilmDetails
           director={film.director}
           starring={film.starring}
-          runTime={film.runTime}
           genre={film.genre}
+          runTime={film.runTime}
           released={film.released}
-        />
-      );
+        />);
     case FilmTab.Reviews:
-      return (
-        <TabReviews reviews={reviews}/>
+      return(
+        <FilmReviews reviews={reviews} />
       );
     default:
-      return null;
+      break;
   }
 };
 
 export const Tabs: FC<TabsProps> = ({film, reviews}) => {
   const [activeTab, setActiveTab] = useState(FilmTab.Overview);
 
-  const handleOverviewClick = () => setActiveTab(FilmTab.Overview);
-  const handleDetailsClick = () => setActiveTab(FilmTab.Details);
-  const handleReviewsClick = () => setActiveTab(FilmTab.Reviews);
+  const handlerOverviewLinkClick = () => {
+    setActiveTab(FilmTab.Overview);
+  };
 
-  return (
+  const handlerDetailsLinkClick = () => {
+    setActiveTab(FilmTab.Details);
+  };
+
+  const handlerReviewsLinkClick = () => {
+    setActiveTab(FilmTab.Reviews);
+  };
+  return(
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
-          <li className={cn('film-nav__item', {'film-nav__item--active' : activeTab === FilmTab.Overview})}>
-            <a className="film-nav__link" onClick={handleOverviewClick}>{FilmTabName[FilmTab.Overview]}</a>
+          <li className={cn('film-nav__item', {'film-nav__item--active': activeTab === FilmTab.Overview})}>
+            <a className="film-nav__link" onClick={handlerOverviewLinkClick}>{FilmTabNameInterface[FilmTab.Overview]}</a>
           </li>
-          <li className={cn('film-nav__item', {'film-nav__item--active' : activeTab === FilmTab.Details})}>
-            <a className="film-nav__link" onClick={handleDetailsClick}>{FilmTabName[FilmTab.Details]}</a>
+          <li className={cn('film-nav__item', {'film-nav__item--active': activeTab === FilmTab.Details})}>
+            <a className="film-nav__link" onClick={handlerDetailsLinkClick}>{FilmTabNameInterface[FilmTab.Details]}</a>
           </li>
-          <li className={cn('film-nav__item', {'film-nav__item--active' : activeTab === FilmTab.Reviews})}>
-            <a className="film-nav__link" onClick={handleReviewsClick}>{FilmTabName[FilmTab.Reviews]}</a>
+          <li className={cn('film-nav__item', {'film-nav__item--active': activeTab === FilmTab.Reviews})}>
+            <a className="film-nav__link" onClick={handlerReviewsLinkClick}>{FilmTabNameInterface[FilmTab.Reviews]}</a>
           </li>
         </ul>
       </nav>
-      {getFilmActiveTabInfo({activeTab, film, reviews})}
+
+      {getFilmActiveTabInfo(activeTab, film, reviews)}
     </div>
   );
 };

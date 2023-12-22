@@ -1,42 +1,51 @@
-export const AppRoute = {
-  Main: '/',
-  SignIn: '/login',
-  MyList: '/mylist',
-  Film: '/films',
-  Player: '/player',
-  NotFound: '*'
-};
+export const RATING_STAR_COUNT = 10;
+export const DEBOUNCE_TIME_FOR_PREVIEW_VIDEO = 1000;
+export const FILM_SAME_GENRE_COUNT = 4;
+export const SHOWN_FILM_COUNT = 8;
+export const DEFAULT_GENRE = 'All genres';
+export const SECOND_COUNT_IN_HOUR = 3600;
+export const SECOND_COUNT_IN_MINUTE = 60;
+export const MINUTE_COUNT_IN_HOUR = 60;
+
+export enum AppRoute {
+  Main = '/',
+  SignIn = '/login',
+  MyList = '/mylist',
+  FilmData = '/films',
+  Player = '/player',
+}
 
 export const APIRoute = {
   Films: '/films',
   Login: '/login',
   Logout: '/logout',
   Comments: '/comments',
+  PromoFilm: '/promo',
+  FavoriteFilms: '/favorite'
 };
-
-export const SHOWN_FILM_COUNT = 8;
-export const DEFAULT_GENRE = 'All genres';
-
-export const RATING_STAR = 10;
-
-export const FILM_SAME_GENRE_COUNT = 4;
-
-export const TIMEOUT_SHOW_ERROR = 2000;
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN'
+  Unknown = 'UNKNOWN',
 }
 
 export const FilmTab = {
-  Overview:'OVERVIEW',
-  Details:'DETAILS',
-  Reviews:'REVIEWS'
+  Overview: 'OVERVIEW',
+  Details: 'DETAILS',
+  Reviews: 'REVIEWS'
 };
 
-export const FilmTabName = {
+export const FilmTabNameInterface = {
   [FilmTab.Overview]: 'Overview',
   [FilmTab.Details]: 'Details',
   [FilmTab.Reviews]: 'Reviews',
 };
+
+export enum NameSpace {
+  Genre = 'GENRE',
+  MyList = 'MY_LIST',
+  Film = 'FILM',
+  Review = 'REVIEW',
+  User = 'USER',
+}

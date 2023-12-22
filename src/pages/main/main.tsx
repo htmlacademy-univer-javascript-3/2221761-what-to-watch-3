@@ -1,46 +1,60 @@
-import {FC, useState} from 'react';
-import {AllGenres, Footer, ListOfFilms, PromoCard, PromoCardProps, ShowMore} from '../../components';
-import {Helmet} from 'react-helmet-async';
-import { useTypedSelector} from '../../hooks/redux.ts';
-import {getGenreList} from '../../utils/get-genre-list.ts';
-import {SHOWN_FILM_COUNT} from '../../const.ts';
-import {useFilmsByGenre} from '../../hooks/filmByGenre.ts';
+import { Helmet } from 'react-helmet-async';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useEffect, useState } from 'react';
+import { useFilmsByGenre } from '../../hooks/films-by-genre';
+import { SHOWN_FILM_COUNT } from '../../const';
+import { getGenreList } from '../../utils/get-genre-list';
+import { getActiveGenre } from '../../store/genre-process/selectors';
+import { getFilms, getPromoFilm, getPromoFilmLoading } from '../../store/film-data/selectors';
+import { fetchPromoFilmAction } from '../../store/api-actions';
+import {FilmList, Footer, GenreList, PromoFilmCard, ShowMoreFilmButton} from '../../components';
+import {Spinner} from '../../components/spinner/spinner.tsx';
 
-type MainProps = {
-  promoCard: PromoCardProps;
-}
+export const Main = () => {
+  const dispatch = useAppDispatch();
+  const activeGenre = useAppSelector(getActiveGenre);
+  const films = useAppSelector(getFilms);
+  const [shownFilmCount, setShownFilmCount] = useState(SHOWN_FILM_COUNT);
+  const filmsByGenre = useFilmsByGenre(activeGenre);
+  const promoFilmCard = useAppSelector(getPromoFilm);
+  const isPromoFilmLoading = useAppSelector(getPromoFilmLoading);
 
-export const Main: FC<MainProps> = ({promoCard}) => {
-  const {films, genre} = useTypedSelector((state) => state);
-  const [showFilm, setShowFilm] = useState<number>(SHOWN_FILM_COUNT);
-  const filmsByGenre = useFilmsByGenre(genre);
+  useEffect(() => {
+    dispatch(fetchPromoFilmAction());
+  }, [dispatch]);
+
+  if(isPromoFilmLoading) {
+    return(
+      <Spinner />
+    );
+  }
 
   return (
     <>
       <Helmet>
         <title>WTW</title>
       </Helmet>
-
-      <PromoCard
-        id={promoCard.id}
-        name={promoCard.name}
-        genre={promoCard.genre}
-        posterImage={promoCard.posterImage}
-        backgroundImage={promoCard.backgroundImage}
-        released={promoCard.released}
-      />
+      {promoFilmCard &&
+        <PromoFilmCard
+          id={promoFilmCard.id}
+          posterImage={promoFilmCard.posterImage}
+          name={promoFilmCard.name}
+          genre={promoFilmCard.genre}
+          released={promoFilmCard.released}
+          backgroundImage={promoFilmCard.backgroundImage}
+          isFavorite={promoFilmCard.isFavorite}
+        />}
 
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <AllGenres genres={getGenreList(films)} onGenreClick={() => setShowFilm(SHOWN_FILM_COUNT)}/>
-          <ListOfFilms films={filmsByGenre} filmCount={showFilm}/>
-          {showFilm
-            < filmsByGenre.length
-            && <ShowMore onShowMoreFilmButtonClick={() => setShowFilm(showFilm + SHOWN_FILM_COUNT)}/>}
+          <GenreList genres={getGenreList(films)} onGenreClick={() => setShownFilmCount(SHOWN_FILM_COUNT)}/>
+
+          <FilmList films={filmsByGenre} filmCount={shownFilmCount}/>
+          {shownFilmCount < filmsByGenre.length && <ShowMoreFilmButton onShowMoreFilmButtonClick={() => setShownFilmCount(shownFilmCount + SHOWN_FILM_COUNT)} />}
         </section>
 
-        <Footer/>
+        <Footer />
       </div>
     </>
   );
