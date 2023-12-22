@@ -1,23 +1,27 @@
 import {ChangeEvent, FC, FormEvent, useState} from 'react';
-import {useTypedDispatch} from '../../hooks/redux.ts';
-import {postReview} from '../../store/api-actions.ts';
-import {RATING_STAR} from '../../const.ts';
+import { RATING_STAR_COUNT } from '../../const';
+import { useAppDispatch } from '../../hooks';
+import { postReview } from '../../store/api-actions';
 
 type FormReviewProps = {
   filmId: string;
 }
 
 export const FormReview: FC<FormReviewProps> = ({filmId}) => {
-  const dispatch = useTypedDispatch();
-  const [rating, setRating] = useState<string>('');
-  const [reviewText, setReviewText] = useState<string>('');
+  const dispatch = useAppDispatch();
+  const [rating, setRating] = useState('');
+  const [reviewText, setReviewText] = useState('');
 
-  const handleRatingChange = (e: ChangeEvent<HTMLInputElement>) => setRating(e.target.value);
+  const handleRatingChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    setRating(evt.target.value);
+  };
 
-  const handleReviewChange = (e: ChangeEvent<HTMLTextAreaElement>) => setReviewText(e.target.value);
+  const handleReviewChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
+    setReviewText(evt.target.value);
+  };
 
-  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  function handleFormSubmit(evt: FormEvent<HTMLFormElement>) {
+    evt.preventDefault();
     setRating(rating);
     setReviewText(reviewText);
     dispatch(
@@ -27,14 +31,14 @@ export const FormReview: FC<FormReviewProps> = ({filmId}) => {
         rating: Number(rating),
       })
     );
-  };
+  }
 
   return (
     <div className="add-review">
       <form action="#" className="add-review__form" onSubmit={handleFormSubmit}>
         <div className="rating">
           <div className="rating__stars">
-            {Array.from({ length: RATING_STAR }, (_, i) => i++)
+            {Array.from({ length: RATING_STAR_COUNT }, (_, i) => i + 1)
               .reverse()
               .map((number) => [
                 <input
@@ -73,7 +77,5 @@ export const FormReview: FC<FormReviewProps> = ({filmId}) => {
           </div>
         </div>
       </form>
-    </div>
-  );
+    </div>);
 };
-

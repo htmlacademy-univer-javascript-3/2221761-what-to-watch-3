@@ -1,10 +1,13 @@
-import {PreviewTypes} from '../models';
-import {DEFAULT_GENRE} from '../const.ts';
+import { DEFAULT_GENRE } from '../const';
+import { PreviewFilm } from '../types/preview-film';
 
-export const getGenreList = (films: PreviewTypes[]) => {
-  const genreSet = new Set(films.map((film) => film.genre));
-  const genreList = Array.from(genreSet);
-  genreList.sort();
-  genreList.unshift(DEFAULT_GENRE);
+export const getGenreList = (films: PreviewFilm[]) => {
+  const genreList: string[] = [];
+  films.forEach((film) => {
+    if (!genreList.includes(film.genre)) {
+      genreList.push(film.genre);
+    }
+  });
+  genreList.sort().unshift(DEFAULT_GENRE);
   return genreList;
 };

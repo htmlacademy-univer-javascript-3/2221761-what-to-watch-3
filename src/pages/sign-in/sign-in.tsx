@@ -1,28 +1,23 @@
-import React, {FormEvent, useRef} from 'react';
-import {Footer, Header} from '../../components';
-import {AuthData} from '../../models';
-import {useTypedDispatch} from '../../hooks/redux.ts';
-import {loginAction} from '../../store/api-actions.ts';
-import {Helmet} from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
+import { useRef, FormEvent } from 'react';
+import { useAppDispatch } from '../../hooks';
+import { loginAction } from '../../store/api-actions';
+import {Footer, HeaderLogo} from '../../components';
 
-export const SignIn: React.FC = () => {
-  const dispatch = useTypedDispatch();
-
+export const SignIn = () => {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
-  const onSubmit = (authData: AuthData) => {
-    dispatch(loginAction(authData));
-  };
+  const dispatch = useAppDispatch();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
 
-    if (loginRef.current && passwordRef.current !== null) {
-      onSubmit({
+    if (loginRef.current !== null && passwordRef.current !== null) {
+      dispatch(loginAction({
         login: loginRef.current.value,
         password: passwordRef.current.value
-      });
+      }));
     }
   };
 
@@ -31,7 +26,10 @@ export const SignIn: React.FC = () => {
       <Helmet>
         <title>WTW. Sign in</title>
       </Helmet>
-      <Header/>
+      <header className="page-header user-page__head">
+        <HeaderLogo />
+        <h1 className="page-title user-page__title">Sign in</h1>
+      </header>
 
       <div className="sign-in user-page__content">
         <form
@@ -64,12 +62,11 @@ export const SignIn: React.FC = () => {
             </div>
           </div>
           <div className="sign-in__submit">
-            <button className="sign-in__btn" type="submit">Sign in</button>
+            <button className="sign-in__btn"type="submit">Sign in</button>
           </div>
         </form>
       </div>
-
-      <Footer/>
+      <Footer />
     </div>
   );
 };
