@@ -4,7 +4,7 @@ import { useAppSelector } from '../../hooks';
 import { getAuthorizationStatus } from '../../store/user-process/selectors.ts';
 import {getFavoriteFilmCount} from '../../store/my-list-process/selectors.ts';
 import {FC} from 'react';
-import {HeaderLogo, ChangeFavoriteStatusButton, UserBlock} from '../index.ts';
+import {Logo, ChangeFavoriteStatusButton, UserBlock} from '../index.ts';
 
 export type PromoFilmCardProps = {
   id: string;
@@ -30,7 +30,7 @@ export const PromoFilmCard: FC<PromoFilmCardProps> = ({id, posterImage, name, ge
       <h1 className="visually-hidden">WTW</h1>
 
       <header className="page-header film-card__head">
-        <HeaderLogo />
+        <Logo />
         <UserBlock />
       </header>
 

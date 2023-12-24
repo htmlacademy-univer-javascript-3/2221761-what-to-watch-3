@@ -1,12 +1,14 @@
 export const getFilmRating = (rating: number) => {
-  if (rating < 3) {
-    return 'Bad';
-  } else if (rating < 5) {
-    return 'Normal';
-  } else if (rating < 8) {
-    return 'Good';
-  } else if (rating < 10) {
-    return 'Very good';
+  switch (true) {
+    case rating < 3:
+      return 'Bad';
+    case rating < 5:
+      return 'Normal';
+    case rating < 8:
+      return 'Good';
+    case rating < 10:
+      return 'Very Good';
+    default:
+      return 'Awesome';
   }
-  return 'Awesome';
 };

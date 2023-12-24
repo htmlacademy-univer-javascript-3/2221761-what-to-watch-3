@@ -8,7 +8,7 @@ import { getAuthorizationStatus } from '../../store/user-process/selectors.ts';
 import {getFilmsDataLoading} from '../../store/film-data/selectors.ts';
 import {
   AddReview,
-  FilmScreen,
+  Film,
   Main,
   MyList,
   NotFound, Player,
@@ -51,7 +51,7 @@ export const App = () => {
           <Route path={AppRoute.FilmData}>
             <Route index element={<NotFound />} />
             <Route path=':id'>
-              <Route index element={<FilmScreen />} />
+              <Route index element={<Film />} />
               <Route path='review' element={<AddReview />} />
             </Route>
           </Route>

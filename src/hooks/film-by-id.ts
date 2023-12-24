@@ -5,14 +5,14 @@ import { fetchFilmAction } from '../store/api-actions';
 import { getCurrentFilm } from '../store/film-data/selectors';
 
 export default function useFilmById() {
-  const urlParams = useParams();
+  const {id} = useParams();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (urlParams.id) {
-      dispatch(fetchFilmAction({filmId: urlParams.id}));
+    if (id) {
+      dispatch(fetchFilmAction({filmId: id}));
     }
-  }, [dispatch, urlParams.id]);
+  }, [dispatch, id]);
 
   return useAppSelector(getCurrentFilm);
 }

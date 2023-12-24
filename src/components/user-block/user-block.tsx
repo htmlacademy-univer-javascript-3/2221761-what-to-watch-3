@@ -1,22 +1,28 @@
 import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
-import { getAuthorizationStatus } from '../../store/user-process/selectors.ts';
-import {SignOutButton} from '../sign-out-button/sign-out-button.tsx';
+import {getAuthorizationStatus, getUserAvatar} from '../../store/user-process/selectors.ts';
+import {SignOut} from '../sign-out/sign-out.tsx';
+import {FC} from 'react';
 
-const getUserBlock = (authorizationStatus: AuthorizationStatus) => {
+type GetUserBlockProps = {
+  authorizationStatus: AuthorizationStatus;
+  avatarUrl: string;
+}
+
+const getUserBlock: FC<GetUserBlockProps> = ({authorizationStatus, avatarUrl}) => {
   if(authorizationStatus === AuthorizationStatus.Auth) {
     return (
       <ul className="user-block">
         <li className="user-block__item">
           <div className="user-block__avatar">
             <Link to={AppRoute.MyList}>
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              <img src={avatarUrl} alt="User avatar" width="63" height="63" />
             </Link>
           </div>
         </li>
         <li className="user-block__item">
-          <SignOutButton />
+          <SignOut />
         </li>
       </ul>
     );
@@ -38,9 +44,10 @@ const getUserBlock = (authorizationStatus: AuthorizationStatus) => {
 
 export const UserBlock = () => {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const avatarUrl = useAppSelector(getUserAvatar);
   return (
     <>
-      {getUserBlock(authorizationStatus)}
+      {getUserBlock({authorizationStatus, avatarUrl})}
     </>
   );
 };

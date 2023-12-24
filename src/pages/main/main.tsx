@@ -7,7 +7,7 @@ import { getGenreList } from '../../utils/get-genre-list';
 import { getActiveGenre } from '../../store/genre-process/selectors';
 import { getFilms, getPromoFilm, getPromoFilmLoading } from '../../store/film-data/selectors';
 import { fetchPromoFilmAction } from '../../store/api-actions';
-import {FilmList, Footer, GenreList, PromoFilmCard, ShowMoreFilmButton} from '../../components';
+import {FilmList, Footer, GenreList, PromoFilmCard} from '../../components';
 import {Spinner} from '../../components/spinner/spinner.tsx';
 
 export const Main = () => {
@@ -51,7 +51,16 @@ export const Main = () => {
           <GenreList genres={getGenreList(films)} onGenreClick={() => setShownFilmCount(SHOWN_FILM_COUNT)}/>
 
           <FilmList films={filmsByGenre} filmCount={shownFilmCount}/>
-          {shownFilmCount < filmsByGenre.length && <ShowMoreFilmButton onShowMoreFilmButtonClick={() => setShownFilmCount(shownFilmCount + SHOWN_FILM_COUNT)} />}
+          {shownFilmCount < filmsByGenre.length &&
+            <div className="catalog__more">
+              <button
+                onClick={() => setShownFilmCount(shownFilmCount + SHOWN_FILM_COUNT)}
+                className="catalog__button"
+                type="button"
+              >
+                Show more
+              </button>
+            </div>}
         </section>
 
         <Footer />

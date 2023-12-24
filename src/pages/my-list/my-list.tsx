@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getFavoriteFilmCount, getFavoriteFilms, getFavoriteFilmsDataLoading } from '../../store/my-list-process/selectors';
 import { useEffect } from 'react';
 import { fetchFavoriteFilmsAction } from '../../store/api-actions';
-import {FilmList, Footer, HeaderLogo, UserBlock} from '../../components';
+import {FilmList, Footer, Logo, UserBlock} from '../../components';
 import {Spinner} from '../../components/spinner/spinner.tsx';
 
 export const MyList = () => {
@@ -29,7 +29,7 @@ export const MyList = () => {
       </Helmet>
 
       <header className="page-header user-page__head">
-        <HeaderLogo />
+        <Logo />
         <h1 className="page-title user-page__title">My list <span className="user-page__film-count">{favoriteFilmCount}</span></h1>
         <UserBlock />
       </header>

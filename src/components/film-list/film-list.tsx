@@ -1,7 +1,7 @@
 import { DEBOUNCE_TIME_FOR_PREVIEW_VIDEO } from '../../const';
 import { PreviewFilm } from '../../types/preview-film';
 import {FC, useRef, useState} from 'react';
-import {SmallFilmCard} from '../small-film-card/small-film-card.tsx';
+import {Card} from '../card/card.tsx';
 
 type FilmListProps = {
   films: PreviewFilm[];
@@ -16,7 +16,7 @@ export const FilmList: FC<FilmListProps> = ({films, filmCount}) => {
   return (
     <div className="catalog__films-list">
       {sliceFilms.map((film: PreviewFilm) => (
-        <SmallFilmCard
+        <Card
           key={film.id}
           id={film.id}
           previewImage={film.previewImage}

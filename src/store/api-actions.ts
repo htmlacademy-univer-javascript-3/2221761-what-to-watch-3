@@ -93,26 +93,30 @@ export const postFilmFavoriteStatus = createAsyncThunk<
   return data;
 });
 
-export const checkAuthAction = createAsyncThunk<void, undefined, {
+export const checkAuthAction = createAsyncThunk<string, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'user/checkAuth',
-  async (_arg, {extra: api}) => {
-    await api.get(APIRoute.Login);
+  async (_arg, { extra: api }) => {
+    const {
+      data: { avatarUrl },
+    } = await api.get<UserData>(APIRoute.Login);
+    return avatarUrl;
   },
 );
 
-export const loginAction = createAsyncThunk<void, AuthData, {
+export const loginAction = createAsyncThunk<string, AuthData, {
   dispatch: AppDispatch;
   extra: AxiosInstance;
 }>(
   'user/login',
   async ({login: email, password}, {dispatch, extra: api}) => {
-    const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
+    const {data: { token, avatarUrl }} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(token);
     dispatch(redirectToRoute(AppRoute.Main));
+    return avatarUrl;
   },
 );
 
@@ -134,4 +138,3 @@ export const postReview = createAsyncThunk<
 >('review/post', async ({ id: filmId, comment, rating }, { extra: api }) => {
   await api.post<ReviewAddingData>(`${APIRoute.Comments}/${filmId}`, { comment, rating });
 });
-
