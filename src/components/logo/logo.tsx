@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export const HeaderLogo = () => (
+export const Logo = () => (
   <div className="logo">
     <Link className="logo__link" to="/">
       <span className="logo__letter logo__letter--1">W</span>

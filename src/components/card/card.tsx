@@ -13,7 +13,7 @@ export type SmallFilmCardProps = {
   onSmallFilmCardMouseOut: () => void;
 }
 
-export const SmallFilmCard: FC<SmallFilmCardProps> = ({id, previewImage, name, previewVideoLink, isPlayingPreviewVideo, onSmallFilmCardMouseOver, onSmallFilmCardMouseOut}) => (
+export const Card: FC<SmallFilmCardProps> = ({id, previewImage, name, previewVideoLink, isPlayingPreviewVideo, onSmallFilmCardMouseOver, onSmallFilmCardMouseOut}) => (
   <article
     className="small-film-card catalog__films-card"
     onMouseOver={onSmallFilmCardMouseOver}

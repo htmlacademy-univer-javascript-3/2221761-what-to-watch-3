@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { useRef, FormEvent } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
-import {Footer, HeaderLogo} from '../../components';
+import {Footer, Logo} from '../../components';
 
 export const SignIn = () => {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -13,7 +13,7 @@ export const SignIn = () => {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (loginRef.current !== null && passwordRef.current !== null) {
+    if (loginRef.current && passwordRef.current !== null) {
       dispatch(loginAction({
         login: loginRef.current.value,
         password: passwordRef.current.value
@@ -27,7 +27,7 @@ export const SignIn = () => {
         <title>WTW. Sign in</title>
       </Helmet>
       <header className="page-header user-page__head">
-        <HeaderLogo />
+        <Logo />
         <h1 className="page-title user-page__title">Sign in</h1>
       </header>
 

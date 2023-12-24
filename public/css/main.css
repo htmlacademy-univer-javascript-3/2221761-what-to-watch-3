@@ -843,6 +843,7 @@ main {
   border-radius: 15px; }
 
 .film-nav__list {
+  cursor: pointer;
   padding: 0;
   margin: 0;
   list-style: none;

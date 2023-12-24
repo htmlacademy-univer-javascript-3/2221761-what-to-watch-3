@@ -7,6 +7,7 @@ import { Review } from './review';
 
 export type UserProcess = {
   authorizationStatus: AuthorizationStatus;
+  avatarUrl: string;
 };
 
 export type FilmData = {

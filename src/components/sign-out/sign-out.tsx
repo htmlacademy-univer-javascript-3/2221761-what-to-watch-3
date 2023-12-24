@@ -3,7 +3,7 @@ import { useAppDispatch } from '../../hooks';
 import { AppRoute } from '../../const';
 import { logoutAction } from '../../store/api-actions';
 
-export const SignOutButton = () => {
+export const SignOut = () => {
   const dispatch = useAppDispatch();
   return(
     <Link

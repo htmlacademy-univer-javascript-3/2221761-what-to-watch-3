@@ -42,21 +42,15 @@ const getFilmActiveTabInfo = (activeTab: string, film: Film, reviews: Review[]) 
 export const Tabs: FC<TabsProps> = ({film, reviews}) => {
   const [activeTab, setActiveTab] = useState(FilmTab.Overview);
 
-  const handlerOverviewLinkClick = () => {
-    setActiveTab(FilmTab.Overview);
-  };
+  const handlerOverviewLinkClick = () => setActiveTab(FilmTab.Overview);
 
-  const handlerDetailsLinkClick = () => {
-    setActiveTab(FilmTab.Details);
-  };
+  const handlerDetailsLinkClick = () => setActiveTab(FilmTab.Details);
 
-  const handlerReviewsLinkClick = () => {
-    setActiveTab(FilmTab.Reviews);
-  };
+  const handlerReviewsLinkClick = () => setActiveTab(FilmTab.Reviews);
   return(
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">
-        <ul className="film-nav__list">
+        <ul className="film-nav__list" style={{cursor: 'pointer'}}>
           <li className={cn('film-nav__item', {'film-nav__item--active': activeTab === FilmTab.Overview})}>
             <a className="film-nav__link" onClick={handlerOverviewLinkClick}>{FilmTabNameInterface[FilmTab.Overview]}</a>
           </li>

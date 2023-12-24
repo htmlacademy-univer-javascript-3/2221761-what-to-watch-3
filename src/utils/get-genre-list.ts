@@ -2,12 +2,9 @@ import { DEFAULT_GENRE } from '../const';
 import { PreviewFilm } from '../types/preview-film';
 
 export const getGenreList = (films: PreviewFilm[]) => {
-  const genreList: string[] = [];
+  const genreSet: Set<string> = new Set([DEFAULT_GENRE]);
   films.forEach((film) => {
-    if (!genreList.includes(film.genre)) {
-      genreList.push(film.genre);
-    }
+    genreSet.add(film.genre);
   });
-  genreList.sort().unshift(DEFAULT_GENRE);
-  return genreList;
+  return Array.from(genreSet).sort();
 };
