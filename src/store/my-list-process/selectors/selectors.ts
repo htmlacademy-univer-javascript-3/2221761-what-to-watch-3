@@ -1,6 +1,6 @@
-import { NameSpace } from '../../const';
-import { PreviewFilm } from '../../types/preview-film';
-import { State } from '../../types/state';
+import { NameSpace } from '../../../const.ts';
+import { PreviewFilm } from '../../../types/preview-film.ts';
+import { State } from '../../../types/state.ts';
 
 export const getFavoriteFilms = (state: Pick<State, NameSpace.MyList>): PreviewFilm[] => state[NameSpace.MyList].favoriteFilms;
 export const getFavoriteFilmsDataLoading = (state: Pick<State, NameSpace.MyList>): boolean => state[NameSpace.MyList].isFavoriteFilmsLoading;

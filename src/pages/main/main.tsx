@@ -1,14 +1,14 @@
 import { Helmet } from 'react-helmet-async';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect, useState } from 'react';
-import { useFilmsByGenre } from '../../hooks/films-by-genre';
+import { useFilmsByGenre } from '../../hooks/use-films-by-genre.ts';
 import { SHOWN_FILM_COUNT } from '../../const';
 import { getGenreList } from '../../utils/get-genre-list';
-import { getActiveGenre } from '../../store/genre-process/selectors';
-import { getFilms, getPromoFilm, getPromoFilmLoading } from '../../store/film-data/selectors';
-import { fetchPromoFilmAction } from '../../store/api-actions';
+import { getActiveGenre } from '../../store/genre-process/selectors/selectors.ts';
+import { getFilms, getPromoFilm, getPromoFilmLoading } from '../../store/film-data/selectors/selectors.ts';
 import {FilmList, Footer, GenreList, PromoFilmCard} from '../../components';
 import {Spinner} from '../../components/spinner/spinner.tsx';
+import {fetchPromoFilmAction} from '../../store/film-data/api-actions/api-actions.ts';
 
 export const Main = () => {
   const dispatch = useAppDispatch();
@@ -16,6 +16,8 @@ export const Main = () => {
   const films = useAppSelector(getFilms);
   const [shownFilmCount, setShownFilmCount] = useState(SHOWN_FILM_COUNT);
   const filmsByGenre = useFilmsByGenre(activeGenre);
+
+
   const promoFilmCard = useAppSelector(getPromoFilm);
   const isPromoFilmLoading = useAppSelector(getPromoFilmLoading);
 

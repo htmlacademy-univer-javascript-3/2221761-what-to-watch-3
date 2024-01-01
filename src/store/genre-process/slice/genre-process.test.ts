@@ -1,6 +1,6 @@
 import {describe} from 'vitest';
 import {changeActiveGenre, genreProcess} from './genre-process.ts';
-import {DEFAULT_GENRE} from '../../const.ts';
+import {DEFAULT_GENRE} from '../../../const.ts';
 
 describe('GenreProcess Slice', () => {
   it('should return initial state with empty action', () => {

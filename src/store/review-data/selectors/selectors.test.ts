@@ -1,6 +1,6 @@
 import {describe, expect} from 'vitest';
-import {NameSpace} from '../../const.ts';
-import {makeFakeReview} from '../../utils/mocks.ts';
+import {NameSpace} from '../../../const.ts';
+import {makeFakeReview} from '../../../utils/mocks.ts';
 import {getCurrentFilmReviews, getFilmReviewsLoading} from './selectors.ts';
 
 describe('Review', () => {

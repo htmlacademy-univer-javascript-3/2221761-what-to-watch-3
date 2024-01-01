@@ -1,16 +1,17 @@
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus, FILM_SAME_GENRE_COUNT } from '../../const';
-import useFilmById from '../../hooks/film-by-id';
+import useFilmById from '../../hooks/use-film-by-id.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { fetchFilmReviewsAction, fetchSimilarFilmsAction } from '../../store/api-actions';
 import { useEffect } from 'react';
-import { getCurrentSimilarFilms, getFilmDataLoading, getSimilarFilmsLoading } from '../../store/film-data/selectors';
-import { getCurrentFilmReviews, getFilmReviewsLoading } from '../../store/review-data/selectors';
-import { getAuthorizationStatus } from '../../store/user-process/selectors.ts';
-import { getFavoriteFilmCount } from '../../store/my-list-process/selectors';
+import { getCurrentSimilarFilms, getFilmDataLoading, getSimilarFilmsLoading } from '../../store/film-data/selectors/selectors.ts';
+import { getCurrentFilmReviews, getFilmReviewsLoading } from '../../store/review-data/selectors/selectors.ts';
+import { getAuthorizationStatus } from '../../store/user-process/selectors/selectors.ts';
+import { getFavoriteFilmCount } from '../../store/my-list-process/selectors/selectors.ts';
 import {ChangeFavoriteStatusButton, FilmList, Footer, Logo, Tabs, UserBlock} from '../../components';
 import {Spinner} from '../../components/spinner/spinner.tsx';
+import {fetchSimilarFilmsAction} from '../../store/film-data/api-actions/api-actions.ts';
+import {fetchFilmReviewsAction} from '../../store/review-data/api-actions/api-actions.ts';
 
 export const Film = () => {
   const navigate = useNavigate();

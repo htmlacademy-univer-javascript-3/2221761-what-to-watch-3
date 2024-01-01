@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
-import { getAuthorizationStatus } from '../../store/user-process/selectors.ts';
-import {getFavoriteFilmCount} from '../../store/my-list-process/selectors.ts';
+import { getAuthorizationStatus } from '../../store/user-process/selectors/selectors.ts';
+import {getFavoriteFilmCount} from '../../store/my-list-process/selectors/selectors.ts';
 import {FC} from 'react';
 import {Logo, ChangeFavoriteStatusButton, UserBlock} from '../index.ts';
 

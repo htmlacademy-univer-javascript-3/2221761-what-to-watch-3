@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { NameSpace } from '../../const';
-import { MyFilmProcess } from '../../types/state';
-import { fetchFavoriteFilmsAction, postFilmFavoriteStatus } from '../api-actions';
+import { NameSpace } from '../../../const.ts';
+import { MyFilmProcess } from '../../../types/state.ts';
+import {fetchFavoriteFilmsAction, postFilmFavoriteStatus} from '../api-actions/api-actions.ts';
 
 const initialState: MyFilmProcess = {
   favoriteFilms: [],
@@ -12,7 +12,12 @@ const initialState: MyFilmProcess = {
 export const myListProcess = createSlice({
   name: NameSpace.MyList,
   initialState,
-  reducers: {},
+  reducers: {
+    clearMyList: (state) => {
+      state.favoriteFilms = [];
+      state.favoriteFilmCount = 0;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchFavoriteFilmsAction.pending, (state) => {
@@ -24,12 +29,17 @@ export const myListProcess = createSlice({
         state.isFavoriteFilmsLoading = false;
       })
       .addCase(postFilmFavoriteStatus.fulfilled, (state, action) => {
-        const film = action.payload;
-        if(film.isFavorite) {
-          state.favoriteFilmCount++;
+        const currentFilm = action.payload;
+        if(currentFilm.isFavorite) {
+          state.favoriteFilms.push(currentFilm);
         } else {
-          state.favoriteFilmCount--;
+          state.favoriteFilms = state.favoriteFilms.filter(
+            (film) => film.id !== currentFilm.id
+          );
         }
+        state.favoriteFilmCount = state.favoriteFilms.length;
       });
   }
 });
+
+export const { clearMyList } = myListProcess.actions;

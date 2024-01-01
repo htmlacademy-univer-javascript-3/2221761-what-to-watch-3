@@ -1,10 +1,10 @@
 import { Helmet } from 'react-helmet-async';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getFavoriteFilmCount, getFavoriteFilms, getFavoriteFilmsDataLoading } from '../../store/my-list-process/selectors';
+import { getFavoriteFilmCount, getFavoriteFilms, getFavoriteFilmsDataLoading } from '../../store/my-list-process/selectors/selectors.ts';
 import { useEffect } from 'react';
-import { fetchFavoriteFilmsAction } from '../../store/api-actions';
 import {FilmList, Footer, Logo, UserBlock} from '../../components';
 import {Spinner} from '../../components/spinner/spinner.tsx';
+import {fetchFavoriteFilmsAction} from '../../store/my-list-process/api-actions/api-actions.ts';
 
 export const MyList = () => {
   const dispatch = useAppDispatch();

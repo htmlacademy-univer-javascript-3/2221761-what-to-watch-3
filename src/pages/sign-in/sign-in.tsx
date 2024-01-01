@@ -1,8 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import { useRef, FormEvent } from 'react';
 import { useAppDispatch } from '../../hooks';
-import { loginAction } from '../../store/api-actions';
 import {Footer, Logo} from '../../components';
+import {loginAction} from '../../store/user-process/api-actions/api-actions.ts';
 
 export const SignIn = () => {
   const loginRef = useRef<HTMLInputElement | null>(null);

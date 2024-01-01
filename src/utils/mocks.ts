@@ -4,6 +4,10 @@ import {PreviewFilm} from '../types/preview-film.ts';
 import faker from 'faker';
 import {FavoriteFilmPostData} from '../types/favorite-film-post-data.ts';
 import {Review} from '../types/review.ts';
+import {Action} from 'redux';
+import {createAPI} from '../services/api.ts';
+import {State} from '../types/state.ts';
+import {ThunkDispatch} from '@reduxjs/toolkit';
 
 export const makeFakeReview = (): Review => ({
   id: faker.random.alphaNumeric(10),
@@ -76,3 +80,9 @@ export const makeFakeFavoriteFilmPostData = (): FavoriteFilmPostData => ({
 });
 
 export const makeFakeAvatarUrl = (): string => internet.url();
+
+export type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createAPI>, Action>;
+
+export const extractActionsTypes = (actions: Action<string>[]) => actions.map(({ type }) => type);
+
+export const makeFakeFilmId = (): string => random.alpha({count: 10});

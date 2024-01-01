@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { NameSpace } from '../../const';
-import { ReviewData } from '../../types/state';
-import { fetchFilmReviewsAction } from '../api-actions';
+import { NameSpace } from '../../../const.ts';
+import { ReviewData } from '../../../types/state.ts';
+import {fetchFilmReviewsAction} from '../api-actions/api-actions.ts';
 
 const initialState: ReviewData = {
   currentFilmReviews: [],

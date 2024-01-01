@@ -1,8 +1,8 @@
 import {FC, useState} from 'react';
 import { useAppDispatch } from '../../hooks';
-import { postFilmFavoriteStatus } from '../../store/api-actions';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useNavigate } from 'react-router-dom';
+import {postFilmFavoriteStatus} from '../../store/my-list-process/api-actions/api-actions.ts';
 
 type ChangeFavoriteStatusButtonProps = {
   filmId: string;
@@ -43,7 +43,9 @@ export const ChangeFavoriteStatusButton: FC<ChangeFavoriteStatusButtonProps> = (
       )}
 
       <span>My list</span>
-      <span className="film-card__count">{authorizationStatus === AuthorizationStatus.Auth ? favoriteFilmCount : 0}</span>
+      <span className="film-card__count">
+        {authorizationStatus === AuthorizationStatus.Auth ? favoriteFilmCount : 0}
+      </span>
     </button>
   );
 };

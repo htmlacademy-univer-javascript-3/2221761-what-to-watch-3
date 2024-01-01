@@ -7,8 +7,8 @@ import {
   getPromoFilm,
   getPromoFilmLoading, getSimilarFilmsLoading
 } from './selectors.ts';
-import {NameSpace} from '../../const.ts';
-import {makeFakeFilm, makeFakePreviewFilms, makeFakePromoFilm} from '../../utils/mocks.ts';
+import {NameSpace} from '../../../const.ts';
+import {makeFakeFilm, makeFakePreviewFilms, makeFakePromoFilm} from '../../../utils/mocks.ts';
 
 describe('FilmData selectors', () => {
   const state = {

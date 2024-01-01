@@ -8,7 +8,6 @@ export type ReviewCardProps = {
   rating: number;
 }
 
-
 export const ReviewCard: FC<ReviewCardProps> = ({date, user, comment, rating}) => (
   <div className="review">
     <blockquote className="review__quote">

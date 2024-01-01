@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
 import { AppRoute } from '../../const';
-import { logoutAction } from '../../store/api-actions';
+import {logoutAction} from '../../store/user-process/api-actions/api-actions.ts';
 
 export const SignOut = () => {
   const dispatch = useAppDispatch();

@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '.';
-import { fetchFilmAction } from '../store/api-actions';
-import { getCurrentFilm } from '../store/film-data/selectors';
+import { getCurrentFilm } from '../store/film-data/selectors/selectors.ts';
+import {fetchFilmAction} from '../store/film-data/api-actions/api-actions.ts';
 
 export default function useFilmById() {
   const {id} = useParams();
