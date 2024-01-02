@@ -1,23 +1,53 @@
+import { useRef, FormEvent, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import cn from 'classnames';
 import { Helmet } from 'react-helmet-async';
-import { useRef, FormEvent } from 'react';
-import { useAppDispatch } from '../../hooks';
-import { loginAction } from '../../store/api-actions';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { redirectToRoute } from '../../store/action';
+import {getAuthorizationStatus} from '../../store/user-process/selectors/selectors.ts';
+import {loginAction} from '../../store/user-process/api-actions/api-actions.ts';
 import {Footer, Logo} from '../../components';
 
 export const SignIn = () => {
+  const dispatch = useAppDispatch();
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
-  const dispatch = useAppDispatch();
+  const [errors, setErrors] = useState({
+    login: '',
+    password: '',
+  });
+
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
+  if (authorizationStatus === AuthorizationStatus.Auth) {
+    dispatch(redirectToRoute(AppRoute.Main));
+  }
+
+  const containsAnyLetters = (password: string) => /[a-z]+/i.test(password);
+  const containsAnyNumbers = (password: string) => /[0-9]+/i.test(password);
+  const isValidEmail = (email: string) => /^[\w-\\.]+@+[\w-]+\.[a-z]{2,4}$/i.test(email);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (loginRef.current && passwordRef.current !== null) {
-      dispatch(loginAction({
-        login: loginRef.current.value,
-        password: passwordRef.current.value
-      }));
+    if (loginRef.current && passwordRef.current) {
+      const login = loginRef.current.value;
+      const password = passwordRef.current.value;
+
+      const loginError = !isValidEmail(login) ? 'Invalid email format' : '';
+      const passwordError = !containsAnyLetters(password) || !containsAnyNumbers(password)
+        ? 'Password should contain letters and numbers'
+        : '';
+
+      setErrors({
+        login: loginError,
+        password: passwordError,
+      });
+
+      if (!loginError && !passwordError) {
+        dispatch(loginAction({ login, password }));
+      }
     }
   };
 
@@ -36,9 +66,13 @@ export const SignIn = () => {
           action="#"
           className="sign-in__form"
           onSubmit={handleSubmit}
+          noValidate
         >
+          <div className="sign-in__message">
+            <p>{errors.login || errors.password}</p>
+          </div>
           <div className="sign-in__fields">
-            <div className="sign-in__field">
+            <div className={cn('sign-in__field', {'sign-in__field--error': errors.login !== ''})}>
               <input
                 className="sign-in__input"
                 type="email"
@@ -49,7 +83,7 @@ export const SignIn = () => {
               />
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
-            <div className="sign-in__field">
+            <div className={cn('sign-in__field', {'sign-in__field--error': errors.password !== ''})}>
               <input
                 className="sign-in__input"
                 type="password"
@@ -62,7 +96,7 @@ export const SignIn = () => {
             </div>
           </div>
           <div className="sign-in__submit">
-            <button className="sign-in__btn"type="submit">Sign in</button>
+            <button className="sign-in__btn" type="submit">Sign in</button>
           </div>
         </form>
       </div>

@@ -1,11 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from '../private-route/private-route';
-import { useAppSelector } from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import browserHistory from '../../browser-history';
-import { getAuthorizationStatus } from '../../store/user-process/selectors.ts';
-import {getFilmsDataLoading} from '../../store/film-data/selectors.ts';
+import {getFilmsDataLoading} from '../../store/film-data/selectors/selectors.ts';
 import {
   AddReview,
   Film,
@@ -16,10 +15,20 @@ import {
 } from '../../pages';
 import {HistoryRouter} from '../history-route/history-route.tsx';
 import {Spinner} from '../spinner/spinner.tsx';
+import {getAuthorizationStatus} from '../../store/user-process/selectors/selectors.ts';
+import {useEffect} from 'react';
+import {fetchFavoriteFilmsAction} from '../../store/my-list-process/api-actions/api-actions.ts';
 
 export const App = () => {
+  const dispatch = useAppDispatch();
   const isFilmsDataLoading = useAppSelector(getFilmsDataLoading);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
+  useEffect(() => {
+    if(authorizationStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavoriteFilmsAction());
+    }
+  }, [authorizationStatus, dispatch]);
 
   if (isFilmsDataLoading) {
     return (
@@ -52,7 +61,14 @@ export const App = () => {
             <Route index element={<NotFound />} />
             <Route path=':id'>
               <Route index element={<Film />} />
-              <Route path='review' element={<AddReview />} />
+              <Route path='review' element={
+                <PrivateRoute
+                  authorizationStatus={authorizationStatus}
+                >
+                  <AddReview />
+                </PrivateRoute>
+              }
+              />
             </Route>
           </Route>
           <Route path={AppRoute.Player}>

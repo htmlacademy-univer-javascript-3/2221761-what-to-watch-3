@@ -1,0 +1,4 @@
+import { NameSpace } from '../../../const.ts';
+import { State } from '../../../types/state.ts';
+
+export const getActiveGenre = (state: Pick<State, NameSpace.Genre>): string => state[NameSpace.Genre].genre;

@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
-import { getAuthorizationStatus } from '../../store/user-process/selectors.ts';
-import {getFavoriteFilmCount} from '../../store/my-list-process/selectors.ts';
+import { getAuthorizationStatus } from '../../store/user-process/selectors/selectors.ts';
 import {FC} from 'react';
-import {Logo, ChangeFavoriteStatusButton, UserBlock} from '../index.ts';
+import {Logo, UserBlock} from '../index.ts';
+import ChangeFavoriteStatusButton from '../change-favorite-status-button/change-favorite-status-button.tsx';
 
 export type PromoFilmCardProps = {
   id: string;
@@ -13,12 +13,10 @@ export type PromoFilmCardProps = {
   backgroundImage: string;
   genre: string;
   released: number;
-  isFavorite: boolean;
 }
 
-export const PromoFilmCard: FC<PromoFilmCardProps> = ({id, posterImage, name, genre, released, backgroundImage, isFavorite}) => {
+export const PromoFilmCard: FC<PromoFilmCardProps> = ({id, posterImage, name, genre, released, backgroundImage}) => {
   const navigate = useNavigate();
-  const favoriteFilmCount = useAppSelector(getFavoriteFilmCount);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
@@ -56,8 +54,6 @@ export const PromoFilmCard: FC<PromoFilmCardProps> = ({id, posterImage, name, ge
               </button>
               <ChangeFavoriteStatusButton
                 filmId={id}
-                isFavorite={isFavorite}
-                favoriteFilmCount={favoriteFilmCount}
                 authorizationStatus={authorizationStatus}
               />
             </div>

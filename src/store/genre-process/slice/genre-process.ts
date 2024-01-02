@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { DEFAULT_GENRE, NameSpace } from '../../const';
-import { GenreProcess } from '../../types/state';
+import { DEFAULT_GENRE, NameSpace } from '../../../const.ts';
+import { GenreProcess } from '../../../types/state.ts';
 
 const initialState: GenreProcess = {
   genre: DEFAULT_GENRE,
