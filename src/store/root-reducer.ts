@@ -5,6 +5,7 @@ import { filmData } from './film-data/slice/film-data.ts';
 import { genreProcess } from './genre-process/slice/genre-process.ts';
 import { reviewData } from './review-data/slice/review-data.ts';
 import { myListProcess } from './my-list-process/slice/my-list-process.ts';
+import {postingReviewProcess} from './post-review-process/slice/post-review-process.ts';
 
 export const rootReducer = combineReducers({
   [NameSpace.Genre]: genreProcess.reducer,
@@ -12,4 +13,5 @@ export const rootReducer = combineReducers({
   [NameSpace.Review]: reviewData.reducer,
   [NameSpace.User]: userProcess.reducer,
   [NameSpace.MyList]: myListProcess.reducer,
+  [NameSpace.PostingReview]: postingReviewProcess.reducer,
 });

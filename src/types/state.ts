@@ -36,7 +36,10 @@ export type MyFilmProcess = {
   isFavoriteFilmsLoading: boolean;
 }
 
+export type PostingReviewProcess = {
+  isFormReviewSubmitting: boolean;
+}
+
 export type State = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
-

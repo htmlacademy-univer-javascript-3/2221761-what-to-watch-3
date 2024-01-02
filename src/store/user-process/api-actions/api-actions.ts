@@ -6,6 +6,9 @@ import {APIRoute, AppRoute} from '../../../const.ts';
 import {AuthData} from '../../../types/auth-data.ts';
 import {dropToken, saveToken} from '../../../services/token.ts';
 import {redirectToRoute} from '../../action.ts';
+import {fetchFavoriteFilmsAction} from '../../my-list-process/api-actions/api-actions.ts';
+import {clearMyList} from '../../my-list-process/slice/my-list-process.ts';
+import {toast} from 'react-toastify';
 
 export const checkAuthAction = createAsyncThunk<string, undefined, {
   dispatch: AppDispatch;
@@ -29,7 +32,9 @@ export const loginAction = createAsyncThunk<string, AuthData, {
   async ({login: email, password}, {dispatch, extra: api}) => {
     const {data: { token, avatarUrl }} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(token);
+    dispatch(fetchFavoriteFilmsAction());
     dispatch(redirectToRoute(AppRoute.Main));
+    toast('Вход прошел успешно');
     return avatarUrl;
   },
 );
@@ -39,8 +44,9 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   extra: AxiosInstance;
 }>(
   'user/logout',
-  async (_arg, {extra: api}) => {
+  async (_arg, {dispatch, extra: api}) => {
     await api.delete(APIRoute.Logout);
+    dispatch(clearMyList());
     dropToken();
   },
 );

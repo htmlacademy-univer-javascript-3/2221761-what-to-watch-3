@@ -17,3 +17,4 @@ export * from './tabs/tab-film-overview.tsx';
 export * from './tabs/tab-film-reviews.tsx';
 export * from './user-block/user-block.tsx';
 export * from './video-player/video-player.tsx';
+export * from './spinner/spinner.tsx';

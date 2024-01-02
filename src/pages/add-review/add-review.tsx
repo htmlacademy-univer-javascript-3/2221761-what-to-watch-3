@@ -4,8 +4,7 @@ import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
 import useFilmById from '../../hooks/use-film-by-id.ts';
 import { getFilmDataLoading } from '../../store/film-data/selectors/selectors.ts';
-import {FormReview, Logo, UserBlock} from '../../components';
-import {Spinner} from '../../components/spinner/spinner.tsx';
+import {FormReview, Logo, UserBlock, Spinner} from '../../components';
 
 export const AddReview = () => {
   const film = useFilmById();

@@ -1,7 +1,8 @@
 import {ChangeEvent, FC, FormEvent, useState} from 'react';
-import { RATING_STAR_COUNT } from '../../const';
-import { useAppDispatch } from '../../hooks';
-import { postReview } from '../../store/api-actions';
+import { MAX_REVIEW_TEXT_LENGTH, RATING_STAR_COUNT } from '../../const';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import {getFormReviewSubmitting} from '../../store/post-review-process/selectors/selectors.ts';
+import {postReview} from '../../store/post-review-process/api-action/api-action.ts';
 
 type FormReviewProps = {
   filmId: string;
@@ -11,6 +12,7 @@ export const FormReview: FC<FormReviewProps> = ({filmId}) => {
   const dispatch = useAppDispatch();
   const [rating, setRating] = useState('');
   const [reviewText, setReviewText] = useState('');
+  const isFormSubmitting = useAppSelector(getFormReviewSubmitting);
 
   const handleRatingChange = (evt: ChangeEvent<HTMLInputElement>) => {
     setRating(evt.target.value);
@@ -20,10 +22,8 @@ export const FormReview: FC<FormReviewProps> = ({filmId}) => {
     setReviewText(evt.target.value);
   };
 
-  function handleFormSubmit(evt: FormEvent<HTMLFormElement>) {
+  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    setRating(rating);
-    setReviewText(reviewText);
     dispatch(
       postReview({
         id: filmId,
@@ -31,7 +31,9 @@ export const FormReview: FC<FormReviewProps> = ({filmId}) => {
         rating: Number(rating),
       })
     );
-  }
+  };
+
+  const isButtonDisabled = () => rating === '' || reviewText.length < 50 || isFormSubmitting;
 
   return (
     <div className="add-review">
@@ -42,6 +44,7 @@ export const FormReview: FC<FormReviewProps> = ({filmId}) => {
               .reverse()
               .map((number) => [
                 <input
+                  data-testid="rating-star"
                   key={`input-star-${number}`}
                   className="rating__input"
                   onChange={handleRatingChange}
@@ -50,6 +53,7 @@ export const FormReview: FC<FormReviewProps> = ({filmId}) => {
                   name="rating"
                   value={`${number}`}
                   checked={`${number}` === rating}
+                  disabled={isFormSubmitting}
                 />,
                 <label
                   key={`label-star-${number}`}
@@ -62,7 +66,7 @@ export const FormReview: FC<FormReviewProps> = ({filmId}) => {
           </div>
         </div>
 
-        <div className="add-review__text">
+        <div className="add-review__text" data-testid="add-review-text">
           <textarea
             value={reviewText}
             className="add-review__textarea"
@@ -70,12 +74,15 @@ export const FormReview: FC<FormReviewProps> = ({filmId}) => {
             id="review-text"
             placeholder="Review text"
             onChange={handleReviewChange}
+            maxLength={MAX_REVIEW_TEXT_LENGTH}
+            disabled={isFormSubmitting}
           >
           </textarea>
           <div className="add-review__submit">
-            <button className="add-review__btn" type="submit">Post</button>
+            <button className="add-review__btn" type="submit" disabled={isButtonDisabled()}>Post</button>
           </div>
         </div>
       </form>
-    </div>);
+    </div>
+  );
 };

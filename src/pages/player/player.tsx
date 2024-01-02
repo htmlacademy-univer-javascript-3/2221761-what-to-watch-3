@@ -7,7 +7,7 @@ import useFilmById from '../../hooks/use-film-by-id.ts';
 import { useRef, useState } from 'react';
 import { getTimeLeft } from '../../utils/get-time-left';
 import {NotFound} from '../not-found/not-found.tsx';
-import {Spinner} from '../../components/spinner/spinner.tsx';
+import {Spinner} from '../../components';
 
 export const Player = () => {
   const navigate = useNavigate();

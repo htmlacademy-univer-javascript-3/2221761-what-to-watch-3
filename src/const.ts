@@ -6,6 +6,7 @@ export const DEFAULT_GENRE = 'All genres';
 export const SECOND_COUNT_IN_HOUR = 3600;
 export const SECOND_COUNT_IN_MINUTE = 60;
 export const MINUTE_COUNT_IN_HOUR = 60;
+export const MAX_REVIEW_TEXT_LENGTH = 400;
 
 export enum AppRoute {
   Main = '/',
@@ -48,4 +49,5 @@ export enum NameSpace {
   Film = 'FILM',
   Review = 'REVIEW',
   User = 'USER',
+  PostingReview = 'POSTING_REVIEW',
 }

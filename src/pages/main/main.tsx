@@ -6,8 +6,7 @@ import { SHOWN_FILM_COUNT } from '../../const';
 import { getGenreList } from '../../utils/get-genre-list';
 import { getActiveGenre } from '../../store/genre-process/selectors/selectors.ts';
 import { getFilms, getPromoFilm, getPromoFilmLoading } from '../../store/film-data/selectors/selectors.ts';
-import {FilmList, Footer, GenreList, PromoFilmCard} from '../../components';
-import {Spinner} from '../../components/spinner/spinner.tsx';
+import {FilmList, Footer, GenreList, PromoFilmCard, Spinner} from '../../components';
 import {fetchPromoFilmAction} from '../../store/film-data/api-actions/api-actions.ts';
 
 export const Main = () => {
@@ -16,8 +15,6 @@ export const Main = () => {
   const films = useAppSelector(getFilms);
   const [shownFilmCount, setShownFilmCount] = useState(SHOWN_FILM_COUNT);
   const filmsByGenre = useFilmsByGenre(activeGenre);
-
-
   const promoFilmCard = useAppSelector(getPromoFilm);
   const isPromoFilmLoading = useAppSelector(getPromoFilmLoading);
 
@@ -44,7 +41,6 @@ export const Main = () => {
           genre={promoFilmCard.genre}
           released={promoFilmCard.released}
           backgroundImage={promoFilmCard.backgroundImage}
-          isFavorite={promoFilmCard.isFavorite}
         />}
 
       <div className="page-content">
