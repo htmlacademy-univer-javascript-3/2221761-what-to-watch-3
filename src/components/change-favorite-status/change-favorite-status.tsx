@@ -9,7 +9,7 @@ type ChangeFavoriteStatusButtonProps = {
   authorizationStatus: AuthorizationStatus;
 };
 
-export default function ChangeFavoriteStatusButton({ filmId, authorizationStatus }: ChangeFavoriteStatusButtonProps) {
+export default function ChangeFavoriteStatus({ filmId, authorizationStatus }: ChangeFavoriteStatusButtonProps) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const favoriteFilmCount = useAppSelector(getFavoriteFilmCount);

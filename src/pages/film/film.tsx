@@ -10,8 +10,8 @@ import { getAuthorizationStatus } from '../../store/user-process/selectors/selec
 import {FilmList, Footer, Logo, Tabs, UserBlock, Spinner} from '../../components';
 import {fetchSimilarFilmsAction} from '../../store/film-data/api-actions/api-actions.ts';
 import {fetchFilmReviewsAction} from '../../store/review-data/api-actions/api-actions.ts';
-import ChangeFavoriteStatusButton
-  from '../../components/change-favorite-status-button/change-favorite-status-button.tsx';
+import ChangeFavoriteStatus
+  from '../../components/change-favorite-status/change-favorite-status.tsx';
 
 export const Film = () => {
   const navigate = useNavigate();
@@ -72,7 +72,7 @@ export const Film = () => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <ChangeFavoriteStatusButton
+                <ChangeFavoriteStatus
                   filmId={film.id}
                   authorizationStatus={authorizationStatus}
                 />

@@ -1,5 +1,5 @@
 export * from './app/app.tsx';
-export * from './change-favorite-status-button/change-favorite-status-button.tsx';
+export * from './change-favorite-status/change-favorite-status.tsx';
 export * from './film-list/film-list.tsx';
 export * from './footer/footer.tsx';
 export * from './form-review/form-review.tsx';
