@@ -13,7 +13,7 @@ import {
   makeFakePreviewFilms
 } from '../../../utils/mocks.ts';
 import {APIRoute, NameSpace} from '../../../const.ts';
-import {fetchFavoriteFilmsAction, postFilmFavoriteStatus} from './api-actions.ts';
+import {fetchFavoriteFilmsAction, postFilmFavoriteStatus} from './api-action.ts';
 import {FilmFavoriteStatus} from '../../../types/film-favorite-status.ts';
 
 describe('Async actions', () => {

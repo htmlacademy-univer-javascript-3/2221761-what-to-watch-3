@@ -2,41 +2,36 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useNavigate } from 'react-router-dom';
 import {getFavoriteFilmCount, getFavoriteFilms} from '../../store/my-list-process/selectors/selectors.ts';
-import {postFilmFavoriteStatus} from '../../store/my-list-process/api-actions/api-actions.ts';
+import {postFilmFavoriteStatus} from '../../store/my-list-process/api-action/api-action.ts';
+import {FC} from 'react';
 
 type ChangeFavoriteStatusButtonProps = {
   filmId: string;
   authorizationStatus: AuthorizationStatus;
-};
+}
 
-export default function ChangeFavoriteStatus({ filmId, authorizationStatus }: ChangeFavoriteStatusButtonProps) {
+export const ChangeFavoriteStatus: FC<ChangeFavoriteStatusButtonProps> = ({filmId, authorizationStatus}) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const favoriteFilmCount = useAppSelector(getFavoriteFilmCount);
   const favoriteFilms = useAppSelector(getFavoriteFilms);
 
-  const isFilmInFavorites = favoriteFilms.map((film) => film.id).includes(filmId);
-
-  const handleClick = () => {
-    if (authorizationStatus === AuthorizationStatus.Auth) {
-      dispatch(postFilmFavoriteStatus({
-        id: filmId,
-        status: Number(!isFilmInFavorites),
-      }));
-    } else {
-      navigate(`${AppRoute.SignIn}`);
-    }
-  };
-
-  const buttonClassName = `btn ${isFilmInFavorites ? 'btn--remove' : 'btn--add'} film-card__button`;
-
-  return (
+  return(
     <button
-      className={buttonClassName}
+      className="btn btn--list film-card__button"
       type="button"
-      onClick={handleClick}
+      onClick={() => {
+        if(authorizationStatus === AuthorizationStatus.Auth) {
+          dispatch(postFilmFavoriteStatus({
+            id: filmId,
+            status: Number(!favoriteFilms.map((film) => film.id).includes(filmId)),
+          }));
+        } else {
+          navigate(`${AppRoute.SignIn}`);
+        }
+      }}
     >
-      {isFilmInFavorites ? (
+      {favoriteFilms.map((film) => film.id).includes(filmId) && authorizationStatus === AuthorizationStatus.Auth ? (
         <svg width="18" height="14" viewBox="0 0 18 14" data-testid="in-list">
           <use xlinkHref="#in-list"></use>
         </svg>
@@ -46,8 +41,8 @@ export default function ChangeFavoriteStatus({ filmId, authorizationStatus }: Ch
         </svg>
       )}
 
-      <span>{isFilmInFavorites ? 'Remove from' : 'Add to'} My List</span>
-      {isFilmInFavorites && <span className="film-card__count">{favoriteFilmCount}</span>}
+      <span>My list</span>
+      <span className="film-card__count">{favoriteFilmCount}</span>
     </button>
   );
-}
+};

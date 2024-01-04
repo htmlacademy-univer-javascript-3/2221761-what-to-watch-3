@@ -5,7 +5,7 @@ import PrivateRoute from '../private-route/private-route';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
 import {Spinner} from '../spinner/spinner.tsx';
-import {fetchFavoriteFilmsAction} from '../../store/my-list-process/api-actions/api-actions.ts';
+import {fetchFavoriteFilmsAction} from '../../store/my-list-process/api-action/api-action.ts';
 import {getAuthorizationStatus} from '../../store/user-process/selectors/selectors.ts';
 import {getFilmsDataLoading} from '../../store/film-data/selectors/selectors.ts';
 import {AddReview, Film, Main, MyList, NotFound, Player, SignIn} from '../../pages';

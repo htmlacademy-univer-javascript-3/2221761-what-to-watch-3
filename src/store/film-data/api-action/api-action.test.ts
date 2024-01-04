@@ -13,7 +13,7 @@ import {
 import {APIRoute, NameSpace} from '../../../const.ts';
 import {State} from '../../../types/state.ts';
 import {createAPI} from '../../../services/api.ts';
-import {fetchFilmAction, fetchFilmsAction, fetchPromoFilmAction, fetchSimilarFilmsAction} from './api-actions.ts';
+import {fetchFilmAction, fetchFilmsAction, fetchPromoFilmAction, fetchSimilarFilmsAction} from './api-action.ts';
 
 describe('Async actions', () => {
   const axios = createAPI();

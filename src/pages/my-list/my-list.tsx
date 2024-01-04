@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getFavoriteFilmCount, getFavoriteFilms, getFavoriteFilmsDataLoading } from '../../store/my-list-process/selectors/selectors.ts';
 import { useEffect } from 'react';
 import {FilmList, Footer, Logo, Spinner, UserBlock} from '../../components';
-import {fetchFavoriteFilmsAction} from '../../store/my-list-process/api-actions/api-actions.ts';
+import {fetchFavoriteFilmsAction} from '../../store/my-list-process/api-action/api-action.ts';
 
 export const MyList = () => {
   const dispatch = useAppDispatch();

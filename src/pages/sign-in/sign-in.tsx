@@ -5,12 +5,12 @@ import { Helmet } from 'react-helmet-async';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { redirectToRoute } from '../../store/action';
 import {getAuthorizationStatus} from '../../store/user-process/selectors/selectors.ts';
-import {loginAction} from '../../store/user-process/api-actions/api-actions.ts';
+import {loginAction} from '../../store/user-process/api-action/api-action.ts';
 import {Footer, Logo} from '../../components';
 import {
   emailRegx,
   passwordRegxAnyLetters, passwordRegxAnyNumbers
-} from '../../utils/form-regx.ts';
+} from '../../utils/form-regx/form-regx.ts';
 
 export const SignIn = () => {
   const dispatch = useAppDispatch();
@@ -27,7 +27,6 @@ export const SignIn = () => {
 
     handleAuthRedirect();
   }, [authorizationStatus, dispatch]);
-
 
   const [errors, setErrors] = useState({
     login: '',

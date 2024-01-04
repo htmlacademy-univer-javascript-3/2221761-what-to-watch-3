@@ -7,7 +7,7 @@ import {State} from '../../../types/state.ts';
 import {Action} from 'redux';
 import {AppThunkDispatch, extractActionsTypes, makeFakeFilmId, makeFakeReview} from '../../../utils/mocks.ts';
 import {APIRoute, NameSpace} from '../../../const.ts';
-import {fetchFilmReviewsAction} from './api-actions.ts';
+import {fetchFilmReviewsAction} from './api-action.ts';
 
 describe('Async Action', () => {
   const axios = createAPI();

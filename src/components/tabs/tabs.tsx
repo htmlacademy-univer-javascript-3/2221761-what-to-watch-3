@@ -4,6 +4,7 @@ import { FilmTab, FilmTabNameInterface } from '../../const';
 import { Film } from '../../types/film';
 import { Review } from '../../types/review';
 import {FilmOverview, FilmDetails, FilmReviews} from '../index.ts';
+import {Link} from 'react-router-dom';
 
 type TabsProps = {
   film: Film;
@@ -52,13 +53,34 @@ export const Tabs: FC<TabsProps> = ({film, reviews}) => {
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list" style={{cursor: 'pointer'}}>
           <li className={cn('film-nav__item', {'film-nav__item--active': activeTab === FilmTab.Overview})}>
-            <a className="film-nav__link" onClick={handlerOverviewLinkClick}>{FilmTabNameInterface[FilmTab.Overview]}</a>
+            <Link
+              to='#'
+              className="film-nav__link"
+              onClick={handlerOverviewLinkClick}
+              data-testid="film-overview-link"
+            >
+              {FilmTabNameInterface[FilmTab.Overview]}
+            </Link>
           </li>
           <li className={cn('film-nav__item', {'film-nav__item--active': activeTab === FilmTab.Details})}>
-            <a className="film-nav__link" onClick={handlerDetailsLinkClick}>{FilmTabNameInterface[FilmTab.Details]}</a>
+            <Link
+              to='#'
+              className="film-nav__link"
+              onClick={handlerDetailsLinkClick}
+              data-testid="film-details-link"
+            >
+              {FilmTabNameInterface[FilmTab.Details]}
+            </Link>
           </li>
           <li className={cn('film-nav__item', {'film-nav__item--active': activeTab === FilmTab.Reviews})}>
-            <a className="film-nav__link" onClick={handlerReviewsLinkClick}>{FilmTabNameInterface[FilmTab.Reviews]}</a>
+            <Link
+              to='#'
+              className="film-nav__link"
+              onClick={handlerReviewsLinkClick}
+              data-testid="film-reviews-link"
+            >
+              {FilmTabNameInterface[FilmTab.Reviews]}
+            </Link>
           </li>
         </ul>
       </nav>

@@ -1,21 +1,20 @@
-import { Helmet } from 'react-helmet-async';
-import { useNavigate } from 'react-router-dom';
-import { AppRoute } from '../../const';
-import { useAppSelector } from '../../hooks';
-import { getFilmDataLoading } from '../../store/film-data/selectors/selectors.ts';
+import {useAppSelector} from '../../hooks';
 import useFilmById from '../../hooks/use-film-by-id.ts';
-import { useRef, useState } from 'react';
-import { getTimeLeft } from '../../utils/get-time-left';
-import {NotFound} from '../not-found/not-found.tsx';
+import {useNavigate} from 'react-router-dom';
+import {useRef, useState} from 'react';
+import {getTimeLeft} from '../../utils/get-time-left/get-time-left.ts';
 import {Spinner} from '../../components';
+import {NotFound} from '../not-found/not-found.tsx';
+import {Helmet} from 'react-helmet-async';
+import {AppRoute} from '../../const.ts';
+import {getFilmDataLoading} from '../../store/film-data/selectors/selectors.ts';
 
 export const Player = () => {
   const navigate = useNavigate();
   const film = useFilmById();
-  const isFilmDataLoading = useAppSelector(getFilmDataLoading);
+  const isCurrentFilmLoading = useAppSelector(getFilmDataLoading);
 
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const progressRef = useRef<HTMLProgressElement | null>(null);
   const togglerRef = useRef<HTMLDivElement | null>(null);
@@ -31,12 +30,7 @@ export const Player = () => {
   }
 
   function handleFullScreenClick() {
-    if (!isFullScreen) {
-      videoRef.current?.requestFullscreen({ navigationUI: 'hide' });
-    } else {
-      document.exitFullscreen();
-    }
-    setIsFullScreen(!isFullScreen);
+    videoRef.current?.requestFullscreen({ navigationUI: 'hide' });
   }
 
   function handleTimeUpdate() {
@@ -58,7 +52,7 @@ export const Player = () => {
   }
 
 
-  if (!film || isFilmDataLoading) {
+  if (!film || isCurrentFilmLoading) {
     return (
       <Spinner />
     );
@@ -81,6 +75,7 @@ export const Player = () => {
         poster={film.backgroundImage}
         ref={videoRef}
         onTimeUpdate={handleTimeUpdate}
+        autoPlay
       >
       </video>
 
@@ -98,7 +93,7 @@ export const Player = () => {
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play" onClick={handleControlClick}>
+          <button type="button" className="player__play" data-testid="video-control" onClick={handleControlClick}>
             {isPlaying ? (
               <>
                 <svg viewBox="0 0 14 21" width="14" height="21">

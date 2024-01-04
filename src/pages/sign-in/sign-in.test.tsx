@@ -6,8 +6,8 @@ import {SignIn} from './sign-in.tsx';
 import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {APIRoute, AppRoute} from '../../const.ts';
-import {loginAction} from '../../store/user-process/api-actions/api-actions.ts';
-import {fetchFavoriteFilmsAction} from '../../store/my-list-process/api-actions/api-actions.ts';
+import {loginAction} from '../../store/user-process/api-action/api-action.ts';
+import {fetchFavoriteFilmsAction} from '../../store/my-list-process/api-action/api-action.ts';
 import {redirectToRoute} from '../../store/action.ts';
 
 describe('component: SignIn', () => {

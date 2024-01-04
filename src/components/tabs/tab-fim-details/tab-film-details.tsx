@@ -1,4 +1,4 @@
-import { getRunTime } from '../../utils/get-run-time';
+import { getRunTime } from '../../../utils/get-run-time/get-run-time.ts';
 import {FC} from 'react';
 
 export type FilmDetailsProps = {

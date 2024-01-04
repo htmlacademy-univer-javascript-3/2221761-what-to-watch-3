@@ -28,13 +28,13 @@ describe('Redirect middleware', () => {
     browserHistory.push('');
   });
 
-  it('redirect to sing in page with redirectToRoute action', () => {
+  it('should redirect to sing in page with redirectToRoute action', () => {
     const redirectAction = redirectToRoute(AppRoute.SignIn);
     store.dispatch(redirectAction);
     expect(browserHistory.location.pathname).toBe(AppRoute.SignIn);
   });
 
-  it('does not redirect to main page with empty action', () => {
+  it('should does not redirect to main page with empty action', () => {
     const emptyAction = { type: '', payload: AppRoute.Main };
     store.dispatch(emptyAction);
     expect(browserHistory.location.pathname).not.toBe(AppRoute.Main);

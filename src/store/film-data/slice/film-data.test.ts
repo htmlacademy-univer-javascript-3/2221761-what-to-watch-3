@@ -7,7 +7,7 @@ import {
   fetchFilmsAction,
   fetchPromoFilmAction,
   fetchSimilarFilmsAction
-} from '../api-actions/api-actions.ts';
+} from '../api-action/api-action.ts';
 
 describe('FilmData slice', () => {
   const initialState: FilmData = {
@@ -67,14 +67,14 @@ describe('FilmData slice', () => {
     });
   });
 
-  describe('', () => {
-    it('', () => {
+  describe('fetchSimilarFilmsAction', () => {
+    it('set "true" on "isCurrentSimilarFilmsLoading" with "fetchSimilarFilmsAction.pending" action', () => {
       const expectedState = {...initialState, isSimilarFilmsLoading: true};
       const result = filmData.reducer(initialState, fetchSimilarFilmsAction.pending);
       expect(result).toEqual(expectedState);
     });
 
-    it('', () => {
+    it('set "false" on "isCurrentSimilarFilmsLoading" and payload on "currentSimilarFilms" with "fetchSimilarFilmsAction.fulfilled" action', () => {
       const films = makeFakePreviewFilms();
       const expectedState = {...initialState, isSimilarFilmsLoading: false, currentSimilarFilms: films};
       const result = filmData.reducer(initialState, fetchSimilarFilmsAction.fulfilled(films, '', {filmId: ''}));
@@ -82,14 +82,14 @@ describe('FilmData slice', () => {
     });
   });
 
-  describe('', () => {
-    it('', () => {
+  describe('fetchPromoFilmAction', () => {
+    it('set "true" on "isPromoFilmLoading" with "fetchPromoFilmAction.pending" action', () => {
       const expectedState = {...initialState, isPromoFilmLoading: true};
       const result = filmData.reducer(initialState, fetchPromoFilmAction.pending);
       expect(result).toEqual(expectedState);
     });
 
-    it('', () => {
+    it('set "false" on "isPromoFilmLoading" and payload on "currentSimilarFilms" with "fetchPromoFilmAction.fulfilled" action', () => {
       const promoFilm = makeFakePromoFilm();
       const expectedState = {...initialState, isPromoFilmLoading: false, promoFilm: promoFilm};
       const result = filmData.reducer(initialState, fetchPromoFilmAction.fulfilled(promoFilm, '', undefined));

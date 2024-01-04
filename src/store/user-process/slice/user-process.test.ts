@@ -2,7 +2,7 @@ import {describe, expect} from 'vitest';
 import {AuthorizationStatus} from '../../../const.ts';
 import {userProcess} from './user-process.ts';
 import {makeFakeAvatarUrl} from '../../../utils/mocks.ts';
-import {checkAuthAction, loginAction, logoutAction} from '../api-actions/api-actions.ts';
+import {checkAuthAction, loginAction, logoutAction} from '../api-action/api-action.ts';
 
 describe('UserProcess slice', () => {
   const mockAvatarUrl = makeFakeAvatarUrl();

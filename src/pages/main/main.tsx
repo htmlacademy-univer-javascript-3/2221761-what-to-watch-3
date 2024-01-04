@@ -1,20 +1,18 @@
 import { Helmet } from 'react-helmet-async';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect, useState } from 'react';
-import { useFilmsByGenre } from '../../hooks/use-films-by-genre.ts';
 import { SHOWN_FILM_COUNT } from '../../const';
-import { getGenreList } from '../../utils/get-genre-list';
+import { getGenreList } from '../../utils/get-genre-list/get-genre-list.ts';
 import { getActiveGenre } from '../../store/genre-process/selectors/selectors.ts';
 import { getFilms, getPromoFilm, getPromoFilmLoading } from '../../store/film-data/selectors/selectors.ts';
 import {FilmList, Footer, GenreList, PromoFilmCard, Spinner} from '../../components';
-import {fetchPromoFilmAction} from '../../store/film-data/api-actions/api-actions.ts';
+import {fetchPromoFilmAction} from '../../store/film-data/api-action/api-action.ts';
 
 export const Main = () => {
   const dispatch = useAppDispatch();
   const activeGenre = useAppSelector(getActiveGenre);
   const films = useAppSelector(getFilms);
   const [shownFilmCount, setShownFilmCount] = useState(SHOWN_FILM_COUNT);
-  const filmsByGenre = useFilmsByGenre(activeGenre);
   const promoFilmCard = useAppSelector(getPromoFilm);
   const isPromoFilmLoading = useAppSelector(getPromoFilmLoading);
 
@@ -27,6 +25,8 @@ export const Main = () => {
       <Spinner />
     );
   }
+
+  const filmsByGenre = films.filter((film) => film.genre === activeGenre);
 
   return (
     <>
@@ -43,7 +43,7 @@ export const Main = () => {
           backgroundImage={promoFilmCard.backgroundImage}
         />}
 
-      <div className="page-content">
+      <div className="page-content" data-testid="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenreList genres={getGenreList(films)} onGenreClick={() => setShownFilmCount(SHOWN_FILM_COUNT)}/>

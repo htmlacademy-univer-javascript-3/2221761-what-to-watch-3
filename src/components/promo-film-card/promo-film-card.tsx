@@ -3,8 +3,7 @@ import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { getAuthorizationStatus } from '../../store/user-process/selectors/selectors.ts';
 import {FC} from 'react';
-import {Logo, UserBlock} from '../index.ts';
-import ChangeFavoriteStatus from '../change-favorite-status/change-favorite-status.tsx';
+import {ChangeFavoriteStatus, Logo, UserBlock} from '../index.ts';
 
 export type PromoFilmCardProps = {
   id: string;

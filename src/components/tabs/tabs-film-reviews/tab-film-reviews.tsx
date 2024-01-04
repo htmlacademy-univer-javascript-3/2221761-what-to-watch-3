@@ -1,6 +1,6 @@
-import { Review } from '../../types/review';
+import { Review } from '../../../types/review.ts';
 import {FC} from 'react';
-import {ReviewCard} from '../index.ts';
+import {ReviewCard} from '../../index.ts';
 
 type FilmReviewsProps = {
   reviews: Review[];
@@ -8,7 +8,7 @@ type FilmReviewsProps = {
 
 export const FilmReviews: FC<FilmReviewsProps> = ({reviews}) => (
   <div className="film-card__reviews film-card__row">
-    <div className="film-card__reviews-col">
+    <div className="film-card__reviews-col" data-testid="film-card__reviews-col">
       {reviews.map((review: Review) => (
         <ReviewCard
           key={review.id}

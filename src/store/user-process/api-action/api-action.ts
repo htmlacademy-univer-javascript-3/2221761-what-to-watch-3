@@ -6,7 +6,7 @@ import {APIRoute, AppRoute} from '../../../const.ts';
 import {AuthData} from '../../../types/auth-data.ts';
 import {dropToken, saveToken} from '../../../services/token.ts';
 import {redirectToRoute} from '../../action.ts';
-import {fetchFavoriteFilmsAction} from '../../my-list-process/api-actions/api-actions.ts';
+import {fetchFavoriteFilmsAction} from '../../my-list-process/api-action/api-action.ts';
 import {clearMyList} from '../../my-list-process/slice/my-list-process.ts';
 import {toast} from 'react-toastify';
 

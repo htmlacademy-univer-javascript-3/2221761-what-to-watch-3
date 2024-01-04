@@ -14,12 +14,13 @@ export const FormReview: FC<FormReviewProps> = ({filmId}) => {
   const [reviewText, setReviewText] = useState('');
   const isFormSubmitting = useAppSelector(getFormReviewSubmitting);
 
-  const handleRatingChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    setRating(evt.target.value);
-  };
-
-  const handleReviewChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
-    setReviewText(evt.target.value);
+  const handleChange = (evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const {name, value} = evt.target;
+    if (name === 'rating') {
+      setRating(value);
+    } else if (name === 'review-text') {
+      setReviewText(value);
+    }
   };
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
@@ -47,7 +48,7 @@ export const FormReview: FC<FormReviewProps> = ({filmId}) => {
                   data-testid="rating-star"
                   key={`input-star-${number}`}
                   className="rating__input"
-                  onChange={handleRatingChange}
+                  onChange={handleChange}
                   id={`star-${number}`}
                   type="radio"
                   name="rating"
@@ -73,7 +74,7 @@ export const FormReview: FC<FormReviewProps> = ({filmId}) => {
             name="review-text"
             id="review-text"
             placeholder="Review text"
-            onChange={handleReviewChange}
+            onChange={handleChange}
             maxLength={MAX_REVIEW_TEXT_LENGTH}
             disabled={isFormSubmitting}
           >

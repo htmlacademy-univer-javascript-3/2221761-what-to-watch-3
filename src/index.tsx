@@ -4,10 +4,9 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {App} from './components';
-import {fetchFilmsAction} from './store/film-data/api-actions/api-actions.ts';
-import {checkAuthAction} from './store/user-process/api-actions/api-actions.ts';
-import HistoryRouter from './components/history-route/history-route.tsx';
+import {App, HistoryRouter} from './components';
+import {fetchFilmsAction} from './store/film-data/api-action/api-action.ts';
+import {checkAuthAction} from './store/user-process/api-action/api-action.ts';
 import browserHistory from './browser-history.ts';
 
 store.dispatch(fetchFilmsAction());
