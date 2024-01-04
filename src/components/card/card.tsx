@@ -20,7 +20,7 @@ export const Card: FC<SmallFilmCardProps> = ({id, previewImage, name, previewVid
     onMouseOut={onSmallFilmCardMouseOut}
   >
     <Link className="small-film-card__link" to={`${AppRoute.FilmData}/${id}`}>
-      <div className="small-film-card__image">
+      <div className="small-film-card__image" data-testid='card-image'>
         <VideoPlayer
           isPlaying={isPlayingPreviewVideo}
           src={previewVideoLink}

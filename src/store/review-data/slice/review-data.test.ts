@@ -1,7 +1,7 @@
 import {describe, expect} from 'vitest';
 import {reviewData} from './review-data.ts';
 import {makeFakeReview} from '../../../utils/mocks.ts';
-import {fetchFilmReviewsAction} from '../api-actions/api-actions.ts';
+import {fetchFilmReviewsAction} from '../api-action/api-action.ts';
 
 describe('', () => {
   const initialState = {

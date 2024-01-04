@@ -16,7 +16,11 @@ export const GenreList: FC<GenreListProps> = (({genres, onGenreClick}) => {
   return(
     <ul className="catalog__genres-list" data-testid="genres-container" style={{cursor: 'pointer'}}>
       {genres.map((genre: string) => (
-        <li key={genre} className={cn('catalog__genres-item', {'catalog__genres-item--active': activeGenre === genre})}>
+        <li
+          key={genre}
+          data-testid={`tab-${genre}`}
+          className={cn('catalog__genres-item', {'catalog__genres-item--active': activeGenre === genre})}
+        >
           <a onClick={() => {
             onGenreClick();
             dispatch(changeActiveGenre(genre));

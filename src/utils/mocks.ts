@@ -8,6 +8,7 @@ import {Action} from 'redux';
 import {createAPI} from '../services/api.ts';
 import {State} from '../types/state.ts';
 import {ThunkDispatch} from '@reduxjs/toolkit';
+import {AuthorizationStatus, DEFAULT_GENRE, NameSpace} from '../const.ts';
 
 export const makeFakeReview = (): Review => ({
   id: faker.random.alphaNumeric(10),
@@ -77,6 +78,39 @@ export const makeFakeFavoriteFilmPostData = (): FavoriteFilmPostData => ({
   isFavorite: false,
   previewImage: image.imageUrl(),
   previewVideoLink: internet.url(),
+});
+
+export const makeFakeStore = (initialState?: Partial<State>): State => ({
+  [NameSpace.Film]: {
+    films: makeFakePreviewFilms(),
+    isFilmsDataLoading: false,
+    currentFilm: makeFakeFilm(),
+    isFilmDataLoading: false,
+    promoFilm: makeFakePromoFilm(),
+    isPromoFilmLoading: false,
+    currentSimilarFilms: makeFakePreviewFilms(),
+    isSimilarFilmsLoading: false,
+  },
+  [NameSpace.Genre]: {
+    genre: DEFAULT_GENRE,
+  },
+  [NameSpace.MyList]: {
+    favoriteFilms: [],
+    favoriteFilmCount: 0,
+    isFavoriteFilmsLoading: false,
+  },
+  [NameSpace.PostingReview]: {
+    isFormReviewSubmitting: false,
+  },
+  [NameSpace.Review]: {
+    currentFilmReviews: [makeFakeReview()],
+    isFilmReviewsLoading: false,
+  },
+  [NameSpace.User]: {
+    authorizationStatus: AuthorizationStatus.NoAuth,
+    avatarUrl: '',
+  },
+  ...(initialState ?? {}),
 });
 
 export const makeFakeAvatarUrl = (): string => internet.url();

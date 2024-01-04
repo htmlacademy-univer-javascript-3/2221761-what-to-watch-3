@@ -1,4 +1,4 @@
-import { getAltDate, humanizeDate } from '../../utils/change-date-format';
+import { getAltDate, humanizeDate } from '../../utils/change-date-format/change-date-format.ts';
 import {FC} from 'react';
 
 export type ReviewCardProps = {

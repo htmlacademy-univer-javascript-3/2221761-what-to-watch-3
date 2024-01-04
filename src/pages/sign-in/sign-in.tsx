@@ -1,32 +1,37 @@
-import { useRef, FormEvent, useState } from 'react';
+import {useRef, FormEvent, useState, useEffect} from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import cn from 'classnames';
 import { Helmet } from 'react-helmet-async';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { redirectToRoute } from '../../store/action';
 import {getAuthorizationStatus} from '../../store/user-process/selectors/selectors.ts';
-import {loginAction} from '../../store/user-process/api-actions/api-actions.ts';
+import {loginAction} from '../../store/user-process/api-action/api-action.ts';
 import {Footer, Logo} from '../../components';
+import {
+  emailRegx,
+  passwordRegxAnyLetters, passwordRegxAnyNumbers
+} from '../../utils/form-regx/form-regx.ts';
 
 export const SignIn = () => {
   const dispatch = useAppDispatch();
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    const handleAuthRedirect = () => {
+      if (authorizationStatus === AuthorizationStatus.Auth) {
+        dispatch(redirectToRoute(AppRoute.Main));
+      }
+    };
+
+    handleAuthRedirect();
+  }, [authorizationStatus, dispatch]);
 
   const [errors, setErrors] = useState({
     login: '',
     password: '',
   });
-
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
-
-  if (authorizationStatus === AuthorizationStatus.Auth) {
-    dispatch(redirectToRoute(AppRoute.Main));
-  }
-
-  const containsAnyLetters = (password: string) => /[a-z]+/i.test(password);
-  const containsAnyNumbers = (password: string) => /[0-9]+/i.test(password);
-  const isValidEmail = (email: string) => /^[\w-\\.]+@+[\w-]+\.[a-z]{2,4}$/i.test(email);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -35,8 +40,8 @@ export const SignIn = () => {
       const login = loginRef.current.value;
       const password = passwordRef.current.value;
 
-      const loginError = !isValidEmail(login) ? 'Invalid email format' : '';
-      const passwordError = !containsAnyLetters(password) || !containsAnyNumbers(password)
+      const loginError = !emailRegx(login) ? 'Invalid email format' : '';
+      const passwordError = !passwordRegxAnyLetters(password) || !passwordRegxAnyNumbers(password)
         ? 'Password should contain letters and numbers'
         : '';
 
@@ -80,6 +85,7 @@ export const SignIn = () => {
                 name="user-email"
                 id="user-email"
                 ref={loginRef}
+                data-testid='loginElement'
               />
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
@@ -91,6 +97,7 @@ export const SignIn = () => {
                 name="user-password"
                 id="user-password"
                 ref={passwordRef}
+                data-testid='passwordElement'
               />
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>

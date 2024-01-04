@@ -7,11 +7,9 @@ import { useEffect } from 'react';
 import { getCurrentSimilarFilms, getFilmDataLoading, getSimilarFilmsLoading } from '../../store/film-data/selectors/selectors.ts';
 import { getCurrentFilmReviews, getFilmReviewsLoading } from '../../store/review-data/selectors/selectors.ts';
 import { getAuthorizationStatus } from '../../store/user-process/selectors/selectors.ts';
-import {FilmList, Footer, Logo, Tabs, UserBlock, Spinner} from '../../components';
-import {fetchSimilarFilmsAction} from '../../store/film-data/api-actions/api-actions.ts';
-import {fetchFilmReviewsAction} from '../../store/review-data/api-actions/api-actions.ts';
-import ChangeFavoriteStatusButton
-  from '../../components/change-favorite-status-button/change-favorite-status-button.tsx';
+import {FilmList, Footer, Logo, Tabs, UserBlock, Spinner, ChangeFavoriteStatus} from '../../components';
+import {fetchSimilarFilmsAction} from '../../store/film-data/api-action/api-action.ts';
+import {fetchFilmReviewsAction} from '../../store/review-data/api-action/api-action.ts';
 
 export const Film = () => {
   const navigate = useNavigate();
@@ -72,7 +70,7 @@ export const Film = () => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <ChangeFavoriteStatusButton
+                <ChangeFavoriteStatus
                   filmId={film.id}
                   authorizationStatus={authorizationStatus}
                 />

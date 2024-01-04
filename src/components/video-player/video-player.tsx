@@ -45,7 +45,7 @@ export const VideoPlayer: FC<VideoPlayerProps> = ({isPlaying, src, poster}) => {
   }, [isPlaying, isLoaded]);
 
   return(
-    <video poster={poster} width="280" height="175" ref={videoRef} muted loop>
+    <video poster={poster} width="280" height="175" data-testid="video" ref={videoRef} muted loop>
       <source src={src} />
     </video>
   );

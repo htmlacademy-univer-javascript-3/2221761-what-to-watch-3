@@ -6,7 +6,7 @@ import {
   fetchFilmsAction,
   fetchPromoFilmAction,
   fetchSimilarFilmsAction
-} from '../api-actions/api-actions.ts';
+} from '../api-action/api-action.ts';
 
 const initialState: FilmData = {
   films: [],

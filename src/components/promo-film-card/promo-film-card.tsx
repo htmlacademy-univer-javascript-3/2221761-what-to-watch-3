@@ -3,8 +3,7 @@ import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { getAuthorizationStatus } from '../../store/user-process/selectors/selectors.ts';
 import {FC} from 'react';
-import {Logo, UserBlock} from '../index.ts';
-import ChangeFavoriteStatusButton from '../change-favorite-status-button/change-favorite-status-button.tsx';
+import {ChangeFavoriteStatus, Logo, UserBlock} from '../index.ts';
 
 export type PromoFilmCardProps = {
   id: string;
@@ -52,7 +51,7 @@ export const PromoFilmCard: FC<PromoFilmCardProps> = ({id, posterImage, name, ge
                 </svg>
                 <span>Play</span>
               </button>
-              <ChangeFavoriteStatusButton
+              <ChangeFavoriteStatus
                 filmId={id}
                 authorizationStatus={authorizationStatus}
               />
