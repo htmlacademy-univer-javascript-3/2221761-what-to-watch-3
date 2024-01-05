@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../../const.ts';
 import {postReview} from '../api-action/api-action.ts';
-import {PostingReviewProcess} from '../../../types/state.ts';
+import {PostingReviewProcess} from '../../../types';
 
 const initialState: PostingReviewProcess = {
   isFormReviewSubmitting: false,

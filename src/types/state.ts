@@ -1,5 +1,5 @@
 import { AuthorizationStatus } from '../const';
-import { store } from '../store';
+import { store } from '../store/store.ts';
 import { Film } from './film';
 import { PreviewFilm } from './preview-film';
 import { PromoFilm } from './promo-film';

@@ -1,8 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {Review} from '../../../types/review.ts';
-import {AppDispatch} from '../../../types/state.ts';
 import {AxiosInstance} from 'axios';
 import {APIRoute} from '../../../const.ts';
+import {AppDispatch, Review} from '../../../types';
 
 export const fetchFilmReviewsAction = createAsyncThunk<Review[], {filmId: string}, {
   dispatch: AppDispatch;

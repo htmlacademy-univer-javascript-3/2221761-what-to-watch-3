@@ -1,13 +1,13 @@
 import {describe, expect} from 'vitest';
 import {filmData} from './film-data.ts';
-import {makeFakeFilm, makeFakePreviewFilms, makeFakePromoFilm} from '../../../utils/mocks.ts';
-import {FilmData} from '../../../types/state.ts';
 import {
   fetchFilmAction,
   fetchFilmsAction,
   fetchPromoFilmAction,
   fetchSimilarFilmsAction
 } from '../api-action/api-action.ts';
+import {FilmData} from '../../../types';
+import {makeFakeFilm, makeFakePreviewFilms, makeFakePromoFilm} from '../../../utils';
 
 describe('FilmData slice', () => {
   const initialState: FilmData = {

@@ -1,8 +1,7 @@
-import { FilmFavoriteStatus } from '../../../types/film-favorite-status.ts';
-import { MyFilmProcess } from '../../../types/state.ts';
-import { makeFakeFilm, makeFakePreviewFilms } from '../../../utils/mocks.ts';
 import { clearMyList, myListProcess } from './my-list-process.ts';
 import {fetchFavoriteFilmsAction, postFilmFavoriteStatus} from '../api-action/api-action.ts';
+import {FilmFavoriteStatus, MyFilmProcess} from '../../../types';
+import {makeFakeFilm, makeFakePreviewFilms} from '../../../utils';
 
 describe('MyListProcess slice', () => {
   const initialState: MyFilmProcess = {

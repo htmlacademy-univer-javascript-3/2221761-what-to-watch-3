@@ -7,14 +7,13 @@ import {
   checkAuthAction, loginAction, logoutAction,
 } from './api-action.ts';
 import {createAPI} from '../../../services/api.ts';
-import {State} from '../../../types/state.ts';
-import {AppThunkDispatch, extractActionsTypes, makeFakeAvatarUrl} from '../../../utils/mocks.ts';
 import {APIRoute, NameSpace} from '../../../const.ts';
-import {AuthData} from '../../../types/auth-data.ts';
 import {redirectToRoute} from '../../action.ts';
 import * as tokenStorage from '../../../services/token.ts';
 import {fetchFavoriteFilmsAction} from '../../my-list-process/api-action/api-action.ts';
 import {clearMyList} from '../../my-list-process/slice/my-list-process.ts';
+import {AuthData, State} from '../../../types';
+import {AppThunkDispatch, extractActionsTypes, makeFakeAvatarUrl} from '../../../utils';
 
 describe('Async actions', () => {
   const axios = createAPI();

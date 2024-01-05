@@ -7,6 +7,7 @@ import { getActiveGenre } from '../../store/genre-process/selectors/selectors.ts
 import { getFilms, getPromoFilm, getPromoFilmLoading } from '../../store/film-data/selectors/selectors.ts';
 import {FilmList, Footer, GenreList, PromoFilmCard, Spinner} from '../../components';
 import {fetchPromoFilmAction} from '../../store/film-data/api-action/api-action.ts';
+import {getFilmsByGenre} from '../../utils/get-films-by-genre/get-films-by-genre.ts';
 
 export const Main = () => {
   const dispatch = useAppDispatch();
@@ -15,6 +16,7 @@ export const Main = () => {
   const [shownFilmCount, setShownFilmCount] = useState(SHOWN_FILM_COUNT);
   const promoFilmCard = useAppSelector(getPromoFilm);
   const isPromoFilmLoading = useAppSelector(getPromoFilmLoading);
+  const filmsByGenre = getFilmsByGenre(useAppSelector(getFilms), activeGenre);
 
   useEffect(() => {
     dispatch(fetchPromoFilmAction());
@@ -25,8 +27,6 @@ export const Main = () => {
       <Spinner />
     );
   }
-
-  const filmsByGenre = films.filter((film) => film.genre === activeGenre);
 
   return (
     <>

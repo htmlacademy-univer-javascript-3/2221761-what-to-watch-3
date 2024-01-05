@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../../const.ts';
-import { MyFilmProcess } from '../../../types/state.ts';
+import { MyFilmProcess } from '../../../types';
 import {fetchFavoriteFilmsAction, postFilmFavoriteStatus} from '../api-action/api-action.ts';
 
 const initialState: MyFilmProcess = {

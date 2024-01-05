@@ -3,7 +3,6 @@ import {createAPI} from '../../../services/api.ts';
 import MockAdapter from 'axios-mock-adapter';
 import thunk from 'redux-thunk';
 import {configureMockStore} from '@jedmao/redux-mock-store';
-import {State} from '../../../types/state.ts';
 import {Action} from 'redux';
 import {
   AppThunkDispatch,
@@ -11,10 +10,10 @@ import {
   makeFakeFavoriteFilmPostData,
   makeFakeFilmId,
   makeFakePreviewFilms
-} from '../../../utils/mocks.ts';
+} from '../../../utils';
 import {APIRoute, NameSpace} from '../../../const.ts';
+import {FilmFavoriteStatus, State} from '../../../types';
 import {fetchFavoriteFilmsAction, postFilmFavoriteStatus} from './api-action.ts';
-import {FilmFavoriteStatus} from '../../../types/film-favorite-status.ts';
 
 describe('Async actions', () => {
   const axios = createAPI();

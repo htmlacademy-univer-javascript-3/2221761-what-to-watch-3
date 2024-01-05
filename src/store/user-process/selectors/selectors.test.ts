@@ -1,6 +1,6 @@
 import {describe} from 'vitest';
 import {AuthorizationStatus, NameSpace} from '../../../const.ts';
-import {makeFakeAvatarUrl} from '../../../utils/mocks.ts';
+import {makeFakeAvatarUrl} from '../../../utils';
 import {getAuthorizationStatus, getUserAvatar} from './selectors.ts';
 
 describe('', () => {

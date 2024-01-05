@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../../const.ts';
-import { FilmData } from '../../../types/state.ts';
+import { FilmData } from '../../../types';
 import {
   fetchFilmAction,
   fetchFilmsAction,
