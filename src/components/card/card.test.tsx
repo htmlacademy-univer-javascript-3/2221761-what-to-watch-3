@@ -1,7 +1,6 @@
-import { makeFakePreviewFilms } from '../../utils/mocks';
+import {makeFakePreviewFilms, withHistory} from '../../utils';
 import { render, screen } from '@testing-library/react';
 import {Card} from './card.tsx';
-import {withHistory} from '../../utils/mock-components.tsx';
 
 describe('SmallFilmCard', () => {
   it('render correctly', () => {

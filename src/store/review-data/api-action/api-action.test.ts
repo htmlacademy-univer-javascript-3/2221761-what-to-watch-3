@@ -3,9 +3,9 @@ import {createAPI} from '../../../services/api.ts';
 import MockAdapter from 'axios-mock-adapter';
 import thunk from 'redux-thunk';
 import {configureMockStore} from '@jedmao/redux-mock-store';
-import {State} from '../../../types/state.ts';
+import {State} from '../../../types';
 import {Action} from 'redux';
-import {AppThunkDispatch, extractActionsTypes, makeFakeFilmId, makeFakeReview} from '../../../utils/mocks.ts';
+import {AppThunkDispatch, extractActionsTypes, makeFakeFilmId, makeFakeReview} from '../../../utils';
 import {APIRoute, NameSpace} from '../../../const.ts';
 import {fetchFilmReviewsAction} from './api-action.ts';
 

@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { makeFakePreviewFilms } from '../../utils/mocks';
-import {withHistory} from '../../utils/mock-components.tsx';
 import {FilmList} from './film-list.tsx';
+import {makeFakePreviewFilms, withHistory} from '../../utils';
 
 describe('FilmList', () => {
   beforeEach(() => {

@@ -1,6 +1,6 @@
 import {describe, expect} from 'vitest';
 import {render, screen} from '@testing-library/react';
-import {withHistory} from '../../utils/mock-components.tsx';
+import {withHistory} from '../../utils';
 import {Logo} from './logo.tsx';
 
 describe('Component: Logo', () => {

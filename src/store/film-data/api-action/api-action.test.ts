@@ -9,11 +9,11 @@ import {
   makeFakeFilm,
   makeFakeFilmId,
   makeFakePreviewFilms, makeFakePromoFilm
-} from '../../../utils/mocks.ts';
+} from '../../../utils';
 import {APIRoute, NameSpace} from '../../../const.ts';
-import {State} from '../../../types/state.ts';
 import {createAPI} from '../../../services/api.ts';
 import {fetchFilmAction, fetchFilmsAction, fetchPromoFilmAction, fetchSimilarFilmsAction} from './api-action.ts';
+import {State} from '../../../types';
 
 describe('Async actions', () => {
   const axios = createAPI();

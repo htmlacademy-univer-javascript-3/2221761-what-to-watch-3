@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { AuthorizationStatus, NameSpace } from '../../const';
-import {withHistory, withStore} from '../../utils/mock-components.tsx';
+import {withHistory, withStore} from '../../utils';
 import {UserBlock} from './user-block.tsx';
 
 describe('UserBlock', () => {

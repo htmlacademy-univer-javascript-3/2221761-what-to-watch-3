@@ -1,8 +1,6 @@
 import { NameSpace } from '../../../const.ts';
-import { Film } from '../../../types/film.ts';
-import { PreviewFilm } from '../../../types/preview-film.ts';
-import { PromoFilm } from '../../../types/promo-film.ts';
-import { State } from '../../../types/state.ts';
+import {Film, PreviewFilm, PromoFilm, State} from '../../../types';
+
 
 export const getFilms = (state: Pick<State, NameSpace.Film>): PreviewFilm[] => state[NameSpace.Film].films;
 export const getFilmsDataLoading = (state: Pick<State, NameSpace.Film>): boolean => state[NameSpace.Film].isFilmsDataLoading;

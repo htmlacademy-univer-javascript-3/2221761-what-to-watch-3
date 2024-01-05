@@ -1,6 +1,6 @@
 import {describe, expect} from 'vitest';
 import {reviewData} from './review-data.ts';
-import {makeFakeReview} from '../../../utils/mocks.ts';
+import {makeFakeReview} from '../../../utils';
 import {fetchFilmReviewsAction} from '../api-action/api-action.ts';
 
 describe('', () => {

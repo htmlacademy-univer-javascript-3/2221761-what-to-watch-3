@@ -1,9 +1,9 @@
 import {describe} from 'vitest';
 import {AuthorizationStatus, NameSpace} from '../../../const.ts';
-import {makeFakeAvatarUrl} from '../../../utils/mocks.ts';
+import {makeFakeAvatarUrl} from '../../../utils';
 import {getAuthorizationStatus, getUserAvatar} from './selectors.ts';
 
-describe('', () => {
+describe('UserProcess selector', () => {
   const mockAuthorizationStatus = AuthorizationStatus.Auth;
   const mockAvatarUrl = makeFakeAvatarUrl();
 

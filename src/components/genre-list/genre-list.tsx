@@ -1,8 +1,7 @@
 import {FC} from 'react';
 import cn from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeActiveGenre } from '../../store/genre-process/slice/genre-process.ts';
-import {getActiveGenre} from '../../store/genre-process/selectors/selectors.ts';
+import {changeActiveGenre, getActiveGenre} from '../../store';
 
 type GenreListProps = {
   genres: string[];

@@ -3,7 +3,7 @@ import {HistoryRouter} from '../components';
 import {HelmetProvider} from 'react-helmet-async';
 import {configureMockStore, MockStore} from '@jedmao/redux-mock-store';
 import MockAdapter from 'axios-mock-adapter';
-import {State} from '../types/state.ts';
+import {State} from '../types';
 import {createAPI} from '../services/api.ts';
 import thunk from 'redux-thunk';
 import {Action} from 'redux';

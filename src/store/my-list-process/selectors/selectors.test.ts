@@ -1,9 +1,9 @@
 import {describe, expect} from 'vitest';
 import {NameSpace} from '../../../const.ts';
-import {makeFakePreviewFilms} from '../../../utils/mocks.ts';
+import {makeFakePreviewFilms} from '../../../utils';
 import {getFavoriteFilmCount, getFavoriteFilms, getFavoriteFilmsDataLoading} from './selectors.ts';
 
-describe('', () => {
+describe('MyList selector', () => {
   const stateFavoriteFilms = makeFakePreviewFilms();
 
   const state = {
@@ -14,19 +14,19 @@ describe('', () => {
     }
   };
 
-  it('', () => {
+  it('should return "favoriteFilms" from state', () => {
     const {favoriteFilms} = state[NameSpace.MyList];
     const result = getFavoriteFilms(state);
     expect(result).toBe(favoriteFilms);
   });
 
-  it('', () => {
+  it('should return "isFavoriteFilmsLoading" from state', () => {
     const {isFavoriteFilmsLoading} = state[NameSpace.MyList];
     const result = getFavoriteFilmsDataLoading(state);
     expect(result).toBe(isFavoriteFilmsLoading);
   });
 
-  it('', () => {
+  it('should return "favoriteFilmCount" from state', () => {
     const {favoriteFilmCount} = state[NameSpace.MyList];
     const result = getFavoriteFilmCount(state);
     expect(result).toBe(favoriteFilmCount);

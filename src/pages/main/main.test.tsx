@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { makeFakeStore } from '../../utils/mocks';
-import {withHistory, withStore} from '../../utils/mock-components.tsx';
 import {Main} from './main.tsx';
+import {makeFakeStore, withHistory, withStore} from '../../utils';
 
 describe('MainScreen', () => {
   it('render correctly', () => {

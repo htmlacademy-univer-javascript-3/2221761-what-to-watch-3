@@ -1,10 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {PreviewFilm} from '../../../types/preview-film.ts';
-import {AppDispatch, State} from '../../../types/state.ts';
 import {AxiosInstance} from 'axios';
 import {APIRoute} from '../../../const.ts';
-import {Film} from '../../../types/film.ts';
-import {PromoFilm} from '../../../types/promo-film.ts';
+import {AppDispatch, Film, PreviewFilm, PromoFilm, State} from '../../../types';
 
 export const fetchFilmsAction = createAsyncThunk<PreviewFilm[], undefined, {
   dispatch: AppDispatch;

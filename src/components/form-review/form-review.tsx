@@ -1,8 +1,7 @@
 import {ChangeEvent, FC, FormEvent, useState} from 'react';
 import { MAX_REVIEW_TEXT_LENGTH, RATING_STAR_COUNT } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import {getFormReviewSubmitting} from '../../store/post-review-process/selectors/selectors.ts';
-import {postReview} from '../../store/post-review-process/api-action/api-action.ts';
+import {getFormReviewSubmitting, postReview} from '../../store';
 
 type FormReviewProps = {
   filmId: string;

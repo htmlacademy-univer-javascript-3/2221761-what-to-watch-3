@@ -1,5 +1,5 @@
 import { getGenreList } from './get-genre-list';
-import {PreviewFilm} from '../../types/preview-film.ts';
+import {PreviewFilm} from '../../types';
 
 describe('Get genre list', () => {
   const mockGenres = ['Drama', 'Action', 'Drama', 'Crime'];

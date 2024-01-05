@@ -1,14 +1,14 @@
 import {describe, expect} from 'vitest';
 import {
   getCurrentFilm,
-  getCurrentSimilarFilms,
+  getCurrentSimilarFilms, getFilmDataLoading,
   getFilms,
   getFilmsDataLoading,
   getPromoFilm,
   getPromoFilmLoading, getSimilarFilmsLoading
 } from './selectors.ts';
 import {NameSpace} from '../../../const.ts';
-import {makeFakeFilm, makeFakePreviewFilms, makeFakePromoFilm} from '../../../utils/mocks.ts';
+import {makeFakeFilm, makeFakePreviewFilms, makeFakePromoFilm} from '../../../utils';
 
 describe('FilmData selectors', () => {
   const state = {
@@ -45,21 +45,21 @@ describe('FilmData selectors', () => {
       expect(result).toBe(currentFilm);
     });
 
-    it('should return ""', () => {
+    it('should return "getFilmDataLoading" from state', () => {
       const {isFilmDataLoading} = state[NameSpace.Film];
-      const result = getFilmsDataLoading(state);
+      const result = getFilmDataLoading(state);
       expect(result).toBe(isFilmDataLoading);
     });
   });
 
   describe('currentSimilarFilms', () => {
-    it('should similarFilms from state', () => {
+    it('should currentSimilarFilms from state', () => {
       const {currentSimilarFilms} = state[NameSpace.Film];
       const result = getCurrentSimilarFilms(state);
       expect(result).toBe(currentSimilarFilms);
     });
 
-    it('should ', () => {
+    it('should "getSimilarFilmsLoading" from state', () => {
       const {isSimilarFilmsLoading} = state[NameSpace.Film];
       const result = getSimilarFilmsLoading(state);
       expect(result).toBe(isSimilarFilmsLoading);
@@ -73,7 +73,7 @@ describe('FilmData selectors', () => {
       expect(result).toBe(promoFilm);
     });
 
-    it('should return loading PromoFilm', () => {
+    it('should return "getPromoFilmLoading" from state', () => {
       const {isPromoFilmLoading} = state[NameSpace.Film];
       const result = getPromoFilmLoading(state);
       expect(result).toBe(isPromoFilmLoading);

@@ -1,5 +1,5 @@
 import { NameSpace } from '../../../const.ts';
-import { State } from '../../../types/state.ts';
+import { State } from '../../../types';
 import { AuthorizationStatus } from '../../../const.ts';
 
 export const getAuthorizationStatus = (state: Pick<State, NameSpace.User>): AuthorizationStatus => state[NameSpace.User].authorizationStatus;

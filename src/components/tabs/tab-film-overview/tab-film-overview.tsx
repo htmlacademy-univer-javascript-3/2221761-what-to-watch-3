@@ -1,5 +1,5 @@
-import { getFilmRating } from '../../../utils/get-film-rating/get-film-rating.ts';
 import {FC} from 'react';
+import {getFilmRating} from '../../../utils';
 
 type FilmOverviewProps = {
   description: string;

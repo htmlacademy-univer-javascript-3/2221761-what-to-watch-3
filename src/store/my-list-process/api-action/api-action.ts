@@ -1,10 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {PreviewFilm} from '../../../types/preview-film.ts';
-import {AppDispatch, State} from '../../../types/state.ts';
 import {AxiosInstance} from 'axios';
 import {APIRoute} from '../../../const.ts';
-import {FavoriteFilmPostData} from '../../../types/favorite-film-post-data.ts';
-import {FilmFavoriteStatus} from '../../../types/film-favorite-status.ts';
+import {AppDispatch, FavoriteFilmPostData, FilmFavoriteStatus, PreviewFilm, State} from '../../../types';
 
 export const fetchFavoriteFilmsAction = createAsyncThunk<PreviewFilm[], undefined, {
   dispatch: AppDispatch;

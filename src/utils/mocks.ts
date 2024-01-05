@@ -1,14 +1,10 @@
 import {name, random, finance, image, internet, commerce} from 'faker';
-import {PromoFilm} from '../types/promo-film.ts';
-import {PreviewFilm} from '../types/preview-film.ts';
 import faker from 'faker';
-import {FavoriteFilmPostData} from '../types/favorite-film-post-data.ts';
-import {Review} from '../types/review.ts';
 import {Action} from 'redux';
 import {createAPI} from '../services/api.ts';
-import {State} from '../types/state.ts';
 import {ThunkDispatch} from '@reduxjs/toolkit';
 import {AuthorizationStatus, DEFAULT_GENRE, NameSpace} from '../const.ts';
+import {FavoriteFilmPostData, PreviewFilm, PromoFilm, Review, State} from '../types';
 
 export const makeFakeReview = (): Review => ({
   id: faker.random.alphaNumeric(10),

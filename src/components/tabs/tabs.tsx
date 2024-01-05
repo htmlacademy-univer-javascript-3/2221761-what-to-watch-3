@@ -1,10 +1,9 @@
 import cn from 'classnames';
 import {FC, useState} from 'react';
 import { FilmTab, FilmTabNameInterface } from '../../const';
-import { Film } from '../../types/film';
-import { Review } from '../../types/review';
 import {FilmOverview, FilmDetails, FilmReviews} from '../index.ts';
 import {Link} from 'react-router-dom';
+import {Film, Review} from '../../types';
 
 type TabsProps = {
   film: Film;

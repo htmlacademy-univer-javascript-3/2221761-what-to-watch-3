@@ -1,4 +1,4 @@
-import {PreviewFilm} from '../../types/preview-film.ts';
+import {PreviewFilm} from '../../types';
 import {DEFAULT_GENRE, SHOWN_GENRE_COUNT} from '../../const.ts';
 
 export const getGenreList = (films: PreviewFilm[]) => {

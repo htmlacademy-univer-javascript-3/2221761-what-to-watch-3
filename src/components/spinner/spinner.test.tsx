@@ -1,5 +1,5 @@
 import {describe, expect} from 'vitest';
-import {withHistory} from '../../utils/mock-components.tsx';
+import {withHistory} from '../../utils';
 import {render, screen} from '@testing-library/react';
 import {Spinner} from './spinner.tsx';
 

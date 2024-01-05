@@ -1,11 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { APIRoute, AuthorizationStatus, NameSpace } from '../../const';
 import userEvent from '@testing-library/user-event';
-import { extractActionsTypes } from '../../utils/mocks';
-import {withHistory, withStore} from '../../utils/mock-components.tsx';
 import {SignOut} from './sign-out.tsx';
-import {logoutAction} from '../../store/user-process/api-action/api-action.ts';
-import {clearMyList} from '../../store/my-list-process/slice/my-list-process.ts';
+import {extractActionsTypes, withHistory, withStore} from '../../utils';
+import {clearMyList, logoutAction} from '../../store';
 
 describe('SignOutButton', () => {
   it('log out when sign out is clicked', async () => {
