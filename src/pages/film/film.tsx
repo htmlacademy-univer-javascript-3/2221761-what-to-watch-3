@@ -4,12 +4,16 @@ import { AppRoute, AuthorizationStatus, FILM_SAME_GENRE_COUNT } from '../../cons
 import useFilmById from '../../hooks/use-film-by-id.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
-import { getCurrentSimilarFilms, getFilmDataLoading, getSimilarFilmsLoading } from '../../store/film-data/selectors/selectors.ts';
-import { getCurrentFilmReviews, getFilmReviewsLoading } from '../../store/review-data/selectors/selectors.ts';
-import { getAuthorizationStatus } from '../../store/user-process/selectors/selectors.ts';
 import {FilmList, Footer, Logo, Tabs, UserBlock, Spinner, ChangeFavoriteStatus} from '../../components';
-import {fetchSimilarFilmsAction} from '../../store/film-data/api-action/api-action.ts';
-import {fetchFilmReviewsAction} from '../../store/review-data/api-action/api-action.ts';
+import {
+  fetchFilmReviewsAction, fetchSimilarFilmsAction,
+  getAuthorizationStatus,
+  getCurrentFilmReviews,
+  getCurrentSimilarFilms,
+  getFilmDataLoading,
+  getFilmReviewsLoading,
+  getSimilarFilmsLoading
+} from '../../store';
 
 export const Film = () => {
   const navigate = useNavigate();

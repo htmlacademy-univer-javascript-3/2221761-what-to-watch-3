@@ -1,5 +1,5 @@
 import { getFilmsByGenre } from './get-films-by-genre';
-import {PreviewFilm} from '../../types/preview-film.ts';
+import {PreviewFilm} from '../../types';
 import {DEFAULT_GENRE} from '../../const.ts';
 
 describe('Get films by genre', () => {

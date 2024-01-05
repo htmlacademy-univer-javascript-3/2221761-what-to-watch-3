@@ -5,9 +5,8 @@ import { store } from './store/store.ts';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {App, HistoryRouter} from './components';
-import {fetchFilmsAction} from './store/film-data/api-action/api-action.ts';
-import {checkAuthAction} from './store/user-process/api-action/api-action.ts';
 import browserHistory from './browser-history.ts';
+import {checkAuthAction, fetchFilmsAction} from './store';
 
 store.dispatch(fetchFilmsAction());
 store.dispatch(checkAuthAction());

@@ -1,9 +1,8 @@
 import { MemoryHistory, createMemoryHistory } from 'history';
 import { render, screen } from '@testing-library/react';
-import { makeFakeFilmId, makeFakeStore } from '../../utils/mocks';
 import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
-import {withHistory, withStore} from '../../utils/mock-components.tsx';
 import {App} from './app.tsx';
+import {makeFakeFilmId, makeFakeStore, withHistory, withStore} from '../../utils';
 
 describe('App', () => {
   let mockHistory: MemoryHistory;

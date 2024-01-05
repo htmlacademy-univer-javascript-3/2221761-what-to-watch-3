@@ -1,9 +1,13 @@
 import { Helmet } from 'react-helmet-async';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getFavoriteFilmCount, getFavoriteFilms, getFavoriteFilmsDataLoading } from '../../store/my-list-process/selectors/selectors.ts';
 import { useEffect } from 'react';
 import {FilmList, Footer, Logo, Spinner, UserBlock} from '../../components';
-import {fetchFavoriteFilmsAction} from '../../store/my-list-process/api-action/api-action.ts';
+import {
+  fetchFavoriteFilmsAction,
+  getFavoriteFilmCount,
+  getFavoriteFilms,
+  getFavoriteFilmsDataLoading
+} from '../../store';
 
 export const MyList = () => {
   const dispatch = useAppDispatch();

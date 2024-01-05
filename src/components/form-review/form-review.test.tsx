@@ -1,12 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { redirectToRoute } from '../../store/action';
-import { makeFakeFilmId } from '../../utils/mocks';
 import { APIRoute, NameSpace } from '../../const';
-import { extractActionsTypes } from '../../utils/mocks';
 import {FormReview} from './form-review.tsx';
-import {withStore} from '../../utils/mock-components.tsx';
-import {postReview} from '../../store/post-review-process/api-action/api-action.ts';
+import {extractActionsTypes, makeFakeFilmId, withStore} from '../../utils';
+import {postReview, redirectToRoute} from '../../store';
+
 
 describe('FormReview', () => {
   const mockFilmId = makeFakeFilmId();

@@ -1,4 +1,4 @@
-import {PreviewFilm} from '../../types/preview-film.ts';
+import {PreviewFilm} from '../../types';
 import {DEFAULT_GENRE} from '../../const.ts';
 
 export const getFilmsByGenre = (films: PreviewFilm[], genre: string) => {

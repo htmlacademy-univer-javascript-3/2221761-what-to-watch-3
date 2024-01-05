@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import {withHistory} from '../../utils/mock-components.tsx';
+import {withHistory} from '../../utils';
 import {Footer} from './footer.tsx';
 
 describe('Component: Footer', () => {

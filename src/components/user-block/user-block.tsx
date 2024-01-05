@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
-import {getAuthorizationStatus, getUserAvatar} from '../../store/user-process/selectors/selectors.ts';
+import {getAuthorizationStatus, getUserAvatar} from '../../store';
 import {SignOut} from '../sign-out/sign-out.tsx';
 import {FC} from 'react';
 

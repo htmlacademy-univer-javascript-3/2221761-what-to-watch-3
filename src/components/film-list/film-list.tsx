@@ -1,5 +1,5 @@
 import { DEBOUNCE_TIME_FOR_PREVIEW_VIDEO } from '../../const';
-import { PreviewFilm } from '../../types/preview-film';
+import { PreviewFilm } from '../../types';
 import {FC, useRef, useState} from 'react';
 import {Card} from '../card/card.tsx';
 

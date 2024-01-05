@@ -2,9 +2,8 @@ import { render, screen } from '@testing-library/react';
 import { AppRoute } from '../../const';
 import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
-import { makeFakeFilmId, makeFakeStore } from '../../utils/mocks';
-import {withHistory, withStore} from '../../utils/mock-components.tsx';
 import {Player} from './player.tsx';
+import {makeFakeFilmId, makeFakeStore, withHistory, withStore} from '../../utils';
 
 describe('Player', () => {
   const mockFilmId = makeFakeFilmId();

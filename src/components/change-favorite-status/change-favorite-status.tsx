@@ -1,9 +1,8 @@
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useNavigate } from 'react-router-dom';
-import {getFavoriteFilmCount, getFavoriteFilms} from '../../store/my-list-process/selectors/selectors.ts';
-import {postFilmFavoriteStatus} from '../../store/my-list-process/api-action/api-action.ts';
 import {FC} from 'react';
+import {getFavoriteFilmCount, getFavoriteFilms, postFilmFavoriteStatus} from '../../store';
 
 type ChangeFavoriteStatusButtonProps = {
   filmId: string;

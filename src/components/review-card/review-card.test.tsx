@@ -1,8 +1,6 @@
-import { makeFakeReview } from '../../utils/mocks';
 import { render, screen } from '@testing-library/react';
-import { humanizeDate } from '../../utils/change-date-format/change-date-format.ts';
-import {withHistory} from '../../utils/mock-components.tsx';
 import {ReviewCard} from './review-card.tsx';
+import {humanizeDate, makeFakeReview, withHistory} from '../../utils';
 
 describe('ReviewCard', () => {
   it('render correctly', () => {

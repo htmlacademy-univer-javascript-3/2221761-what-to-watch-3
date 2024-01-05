@@ -2,12 +2,9 @@ import { Helmet } from 'react-helmet-async';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect, useState } from 'react';
 import { SHOWN_FILM_COUNT } from '../../const';
-import { getGenreList } from '../../utils/get-genre-list/get-genre-list.ts';
-import { getActiveGenre } from '../../store/genre-process/selectors/selectors.ts';
-import { getFilms, getPromoFilm, getPromoFilmLoading } from '../../store/film-data/selectors/selectors.ts';
 import {FilmList, Footer, GenreList, PromoFilmCard, Spinner} from '../../components';
-import {fetchPromoFilmAction} from '../../store/film-data/api-action/api-action.ts';
-import {getFilmsByGenre} from '../../utils/get-films-by-genre/get-films-by-genre.ts';
+import {fetchPromoFilmAction, getActiveGenre, getFilms, getPromoFilm, getPromoFilmLoading} from '../../store';
+import {getFilmsByGenre, getGenreList} from '../../utils';
 
 export const Main = () => {
   const dispatch = useAppDispatch();

@@ -2,12 +2,12 @@ import {useAppSelector} from '../../hooks';
 import useFilmById from '../../hooks/use-film-by-id.ts';
 import {useNavigate} from 'react-router-dom';
 import {useRef, useState} from 'react';
-import {getTimeLeft} from '../../utils/get-time-left/get-time-left.ts';
 import {Spinner} from '../../components';
 import {NotFound} from '../not-found/not-found.tsx';
 import {Helmet} from 'react-helmet-async';
 import {AppRoute} from '../../const.ts';
-import {getFilmDataLoading} from '../../store/film-data/selectors/selectors.ts';
+import {getFilmDataLoading} from '../../store';
+import {getTimeLeft} from '../../utils';
 
 export const Player = () => {
   const navigate = useNavigate();

@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
-import { getAuthorizationStatus } from '../../store/user-process/selectors/selectors.ts';
 import {FC} from 'react';
 import {ChangeFavoriteStatus, Logo, UserBlock} from '../index.ts';
+import {getAuthorizationStatus} from '../../store';
 
 export type PromoFilmCardProps = {
   id: string;

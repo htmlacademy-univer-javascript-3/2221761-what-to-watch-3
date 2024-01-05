@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { makeFakeFilmId, makeFakePreviewFilms, makeFakeStore } from '../../utils/mocks';
+import {makeFakeFilmId, makeFakePreviewFilms, makeFakeStore, withHistory, withStore} from '../../utils';
 import { AuthorizationStatus, NameSpace } from '../../const';
-import {withHistory, withStore} from '../../utils/mock-components.tsx';
 import {ChangeFavoriteStatus} from './change-favorite-status.tsx';
 
 describe('ChangeFavoriteStatusButton', () => {

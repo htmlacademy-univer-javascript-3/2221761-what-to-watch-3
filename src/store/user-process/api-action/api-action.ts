@@ -3,10 +3,9 @@ import {AxiosInstance} from 'axios';
 import {APIRoute, AppRoute} from '../../../const.ts';
 import {dropToken, saveToken} from '../../../services/token.ts';
 import {redirectToRoute} from '../../action.ts';
-import {fetchFavoriteFilmsAction} from '../../my-list-process/api-action/api-action.ts';
-import {clearMyList} from '../../my-list-process/slice/my-list-process.ts';
 import {toast} from 'react-toastify';
 import {AppDispatch, AuthData, State, UserData} from '../../../types';
+import {clearMyList, fetchFavoriteFilmsAction} from '../../my-list-process';
 
 export const checkAuthAction = createAsyncThunk<string, undefined, {
   dispatch: AppDispatch;

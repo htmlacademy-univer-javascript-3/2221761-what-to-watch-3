@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { makeFakeFilm } from '../../../utils/mocks.ts';
-import {withHistory} from '../../../utils/mock-components.tsx';
 import {FilmOverview} from './tab-film-overview.tsx';
+import {makeFakeFilm, withHistory} from '../../../utils';
 
 describe('FilmOverview', () => {
   it('render correctly', () => {

@@ -1,14 +1,11 @@
 import {describe, expect} from 'vitest';
 import {createMemoryHistory} from 'history';
-import {withHistory, withStore} from '../../utils/mock-components.tsx';
-import {extractActionsTypes, makeFakeStore} from '../../utils/mocks.ts';
 import {SignIn} from './sign-in.tsx';
 import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {APIRoute, AppRoute} from '../../const.ts';
-import {loginAction} from '../../store/user-process/api-action/api-action.ts';
-import {fetchFavoriteFilmsAction} from '../../store/my-list-process/api-action/api-action.ts';
-import {redirectToRoute} from '../../store/action.ts';
+import {extractActionsTypes, makeFakeStore, withHistory, withStore} from '../../utils';
+import {fetchFavoriteFilmsAction, loginAction, redirectToRoute} from '../../store';
 
 describe('component: SignIn', () => {
   const mockHistory = createMemoryHistory();
